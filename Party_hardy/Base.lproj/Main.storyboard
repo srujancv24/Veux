@@ -719,7 +719,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Home" id="Hnw-JZ-kHm">
                         <barButtonItem key="leftBarButtonItem" title="Sort" style="done" id="Lfu-WK-UKF"/>
-                        <barButtonItem key="rightBarButtonItem" title="Filter" style="done" id="Ymr-j4-uvI">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="Ymr-j4-uvI">
                             <connections>
                                 <segue destination="fpt-ro-Jii" kind="show" id="5a6-Qf-Xsn"/>
                             </connections>
