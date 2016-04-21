@@ -13,5 +13,7 @@ class Users: NSObject {
         var name : String?
         var caption : String?
         var residing : String?
-        var image : String?        
-    }
+        var image : String?
+        var username : String?
+        var events:[test] = []
+}

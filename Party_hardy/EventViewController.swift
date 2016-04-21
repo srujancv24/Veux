@@ -41,7 +41,8 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     override func viewDidLoad() {
                 
-        
+      
+        //updateCurrentUserPropsSync()
         super.viewDidLoad()
         
         picker.delegate = self
@@ -101,20 +102,52 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
         event.Image=url
         
         
+//        let dataQuery = BackendlessDataQuery();
+//        // query to load user object which has objectId as the currently logged in user
+//        
+//        dataQuery.whereClause = "objectId = '\(backendless.userService.currentUser.objectId)'"
+//        // find operation always returns a collection
+//        
+//        let collection:BackendlessCollection = backendless.data.of(BackendlessUser.ofClass()).find(dataQuery)
+//        // take the first object from the collection, since there is always going to be just one
+//        
+//        let userObject = collection.getCurrentPage().first as! BackendlessUser;
+//        
+//        print(userObject)
+//        
+//        let  properties = [
+//            "name" : "Me",
+//            "events" : event
+//        ]
+//        backendless.userService.currentUser.updateProperties(properties)
+        
+//        
+        let currentUser = backendless.userService.currentUser
+        currentUser.setProperty("name", object: "Srujan Chalasani" )
+        currentUser.setProperty("events", object: event)
+        backendless.userService.update(currentUser)
+//        let updatedName = updatedUser.getProperty("name")
+//        print( "user has been updated. Name \(updatedName)" )
         
         
         
-        let dataStore = backendless.data.of(event.ofClass())
         
-        // save object synchronously
-        var error: Fault?
-        let result = dataStore.save(event, fault: &error) as? test
-        if error == nil {
-            print("Event has been created \(result!.Name)")
-        }
-        else {
-            print("Server reported an error: \(error)")
-        }
+        
+        
+        
+//        let dataStore = backendless.data.of(event.ofClass())
+//        
+//        // save object synchronously
+//        var error: Fault?
+//        let result = dataStore.save(event, fault: &error) as? test
+//        if error == nil {
+//            print("Event has been created \(result!.Name)")
+//        }
+//        else {
+//            print("Server reported an error: \(error)")
+//        }
+        
+        
         
         
 //        let storeData = backendless.data.of(event.ofClass())
@@ -128,6 +161,23 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
 //        })
         
     }
+    
+    
+//    func updateCurrentUserPropsSync() {
+//        Types.tryblock({ () -> Void in
+//            let currentUser = self.backendless.userService.currentUser
+//            print("User has been logged in (SYNC): \(currentUser)")
+//            let properties = [
+//                "name" : "Agent 007"
+//            ]
+//            currentUser.updateProperties( properties )
+//            let updatedUser = self.backendless.userService.update(currentUser)
+//            print("User updated (SYNC): \(updatedUser)")
+//            },
+//                       catchblock: { (exception) -> Void in
+//                        print("Server reported an error: \(exception)" )
+//        })
+//    }
     
    
     @IBAction func selectImage(sender: AnyObject) {

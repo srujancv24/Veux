@@ -38,40 +38,27 @@ class UserProfileViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    func fetchData(){
+ 
+    
+    func fetchData() {
         
+        let dataQuery = BackendlessDataQuery();
+        // query to load user object which has objectId as the currently logged in user
         
-        user = self.backendless.userService.currentUser.name
-        print(user)
-
-            
-            let whereClause = "name='\(user)'"
-            let dataQuery = BackendlessDataQuery()
-            dataQuery.whereClause = whereClause
-            
-            var error: Fault?
-            let bc = Backendless.sharedInstance().data.of(Users.ofClass()).find(dataQuery, fault: &error)
-            if error == nil {
-                for user in bc.data as! [Users] {
-
-                     print(user.name)
-
-                    self.Name.text = user.name
-                    
-                    //Retrieving Image
-                 //   let url = NSURL(string: user.Image!)
-                    
-                   // let dataimage = NSData(contentsOfURL: url!)
-                    
-                   // self.Image.image = UIImage(data: dataimage!)
+        dataQuery.whereClause = "objectId = '\(backendless.userService.currentUser.objectId)'"
+        // find operation always returns a collection
         
-            }
-            }
-            else {
-                print("Server reported an error: \(error)")
-            }
+        let collection:BackendlessCollection = backendless.data.of(BackendlessUser.ofClass()).find(dataQuery)
+        // take the first object from the collection, since there is always going to be just one
+        
+        let userObject = collection.getCurrentPage().first as! BackendlessUser;
+        
+        print(userObject.getProperty("name"))
+       
         
     }
+    
+   
     
     
 
