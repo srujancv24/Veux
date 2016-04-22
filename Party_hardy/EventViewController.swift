@@ -121,11 +121,16 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
 //        ]
 //        backendless.userService.currentUser.updateProperties(properties)
         
-//        
+//       
+        
+        //Update User
         let currentUser = backendless.userService.currentUser
         currentUser.setProperty("name", object: "Srujan Chalasani" )
         currentUser.setProperty("events", object: event)
         backendless.userService.update(currentUser)
+        
+        
+        
 //        let updatedName = updatedUser.getProperty("name")
 //        print( "user has been updated. Name \(updatedName)" )
         

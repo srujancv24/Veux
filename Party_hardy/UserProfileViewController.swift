@@ -54,6 +54,7 @@ class UserProfileViewController: UIViewController {
         let userObject = collection.getCurrentPage().first as! BackendlessUser;
         
         print(userObject.getProperty("name"))
+        Name.text = userObject.getProperty("name").string
        
         
     }
