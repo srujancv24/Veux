@@ -22,6 +22,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         let SECRET_KEY = "C5DB14C3-420E-500E-FFB2-0AABE09E8F00"
         let VERSION_NUM = "v1"
         
+        let user: String
         uName.delegate = self
         UEmail.delegate = self
         uPassword.delegate = self
