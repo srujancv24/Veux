@@ -836,6 +836,9 @@
                                             <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                                 <rect key="frame" x="151" y="0.0" width="77" height="30"/>
                                             </variation>
+                                            <connections>
+                                                <action selector="UProfile:" destination="NCU-Za-peL" eventType="touchUpInside" id="wTB-Tq-Y03"/>
+                                            </connections>
                                         </button>
                                         <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="1ob-yH-eCy">
                                             <rect key="frame" x="0.0" y="-2" width="150" height="2"/>
@@ -885,6 +888,9 @@
                             <barButtonItem title="Filter" id="hlX-bc-3Gc"/>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <segue destination="fpt-ro-Jii" kind="show" id="WdR-28-dVi"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="icS-NJ-nhQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -915,7 +921,7 @@
         <!--User Profile-->
         <scene sceneID="Tb1-nZ-nZe">
             <objects>
-                <viewController title="User Profile" id="fpt-ro-Jii" customClass="UserProfileViewController" customModule="Party_hardy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="User Profile" id="fpt-ro-Jii" customClass="OtherProfileViewController" customModule="Party_hardy" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="oKx-1i-jQs"/>
                         <viewControllerLayoutGuide type="bottom" id="FHd-cw-HD0"/>
@@ -948,6 +954,9 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="175" y="172" width="50" height="21"/>
+                                </variation>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Pyf-2s-2VW">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -959,7 +968,8 @@
                                         <exclude reference="x0e-EU-Idp"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="129.5" y="28" width="141" height="141"/>
                                     <mask key="constraints">
                                         <include reference="x0e-EU-Idp"/>
                                     </mask>
@@ -1069,7 +1079,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0FY-Lu-1cv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6430.5" y="262.5"/>
+            <point key="canvasLocation" x="5623.5" y="330"/>
         </scene>
         <!--Edit Profile-->
         <scene sceneID="BV7-VS-oDO">

@@ -21,6 +21,10 @@ class HomeViewController: UITableViewController {
         self.fetchData()
        
     }
+    @IBAction func UProfile(sender: UIButton) {
+        
+        
+    }
     
     func fetchData(){
     
