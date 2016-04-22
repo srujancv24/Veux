@@ -73,7 +73,7 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
                 self.url = uploadedFile.fileURL
                 
                 
-                self.addNewEvent(self.eventName.text!, comments: self.Comments.text!, address: self.address.text!, city: self.city.text!, state: self.state.text!, zipcode: self.zipcode.text!, date: self.date.date, image: self.url!)
+                self.addNewEvent(self.eventName.text!, comments: self.Comments.text!, address: self.address.text!, city: self.city.text!, state: self.state.text!, zipcode: self.zipcode.text!, date: self.date.date, image: self.url!,UName: self.backendless.userService.currentUser.name, UEmail: self.backendless.userService.currentUser.email)
                 
                 
                 
@@ -86,11 +86,11 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
         }
         else
         {
-            self.addNewEvent(self.eventName.text!, comments: self.Comments.text!, address: self.address.text!, city: self.city.text!, state: self.state.text!, zipcode: self.zipcode.text!, date: self.date.date, image: self.url!)
+            self.addNewEvent(self.eventName.text!, comments: self.Comments.text!, address: self.address.text!, city: self.city.text!, state: self.state.text!, zipcode: self.zipcode.text!, date: self.date.date, image: self.url!,UName: backendless.userService.currentUser.name, UEmail: backendless.userService.currentUser.email)
         }
     }
     
-    func addNewEvent(name: String, comments: String, address: String, city: String, state: String, zipcode: String, date:NSDate, image:String){
+    func addNewEvent(name: String, comments: String, address: String, city: String, state: String, zipcode: String, date:NSDate, image:String, UName:String, UEmail:String){
     let event = test()
         event.Name = name
         event.Comments=comments
@@ -100,6 +100,8 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
         event.Zipcode=zipcode
         event.EventDate=date
         event.Image=url
+        event.UName = UName
+        event.UEmail = UEmail
         
         
 //        let dataQuery = BackendlessDataQuery();
@@ -128,6 +130,8 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
         currentUser.setProperty("name", object: "Srujan Chalasani" )
         currentUser.setProperty("events", object: event)
         backendless.userService.update(currentUser)
+        
+    
         
         
         

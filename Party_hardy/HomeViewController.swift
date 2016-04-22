@@ -24,6 +24,9 @@ class HomeViewController: UITableViewController {
     
     func fetchData(){
     
+        self.tableView.reloadData()
+
+        
         let dataStore = backendless.data.of(test.ofClass())
         var error: Fault?
         
@@ -36,7 +39,6 @@ class HomeViewController: UITableViewController {
             for obj in contacts as! [test]{
                 //print("\(obj.Image)")
                
-                
             }
         }
             

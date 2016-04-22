@@ -57,33 +57,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 
         })
     }
-//
-//        func validUserToken() {
-//            backendless.userService.isValidUserToken(
-//                { ( result : AnyObject!) -> () in
-//                    print("isValidUserToken (ASYNC): \(result.boolValue)")
-//                 
-//                },
-//                error: { ( fault : Fault!) -> () in
-//                    print("Server reported an error (ASYNC): \(fault)")
-//                    
-//                }
-//            )
-//        }
-//        
-//        
-//        func SegueForLoggedInUser (){
-//              self.validUserToken()
-//            self.performSegueWithIdentifier("event", sender: self)
-//            
-//        }
+
     
     @IBAction func loginButton(sender: AnyObject) {
         
        
             print("This is the username text", UserEmail.text)
             print("This is the password text", UserPassword.text)
-            
             
             backendless.userService.login(
                 UserEmail.text, password:UserPassword.text,

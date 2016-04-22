@@ -13,6 +13,8 @@ class HomeCell : UITableViewCell, UIScrollViewDelegate {
     @IBOutlet weak var EventImage: UIImageView!
     @IBOutlet weak var EventName: UILabel!
     @IBOutlet weak var EventHost: UIButton!
+    @IBOutlet weak var UName: UIButton!
+    
     
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -23,6 +25,8 @@ class HomeCell : UITableViewCell, UIScrollViewDelegate {
     func bindData(test1: test) {
         
         self.EventName.text = test1.Name! as String
+        
+        self.UName.setTitle(test1.UName! as String, forState: .Normal)
         
         self.EventHost.setTitle(test1.Address! as String, forState: .Normal)
         

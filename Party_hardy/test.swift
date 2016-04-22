@@ -18,5 +18,8 @@ class test: NSObject {
     var State: String?
     var Zipcode: String?
     var Image: String?
+    var UName: String?
+    var UEmail: String?
+    
     
 }
