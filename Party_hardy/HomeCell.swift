@@ -41,7 +41,7 @@ class HomeCell : UITableViewCell, UIScrollViewDelegate {
         
         else
         {
-        self.EventImage.image = nil
+        self.EventImage.image = UIImage(named: "imageNotAvailable.jpg")
         }
         
        

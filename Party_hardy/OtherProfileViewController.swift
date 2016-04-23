@@ -69,51 +69,17 @@ class OtherProfileViewController: UIViewController  {
         user = group.save(user) as! UserGroup
         
         
-        let currentUser = backendless.userService.currentUser
-        userObject.setProperty("FollowedBy", object: currentUser)
-        backendless.userService.update(userObject)
+        
         
         
         }
     
     @IBAction func Follow(sender: UIButton) {
         
-        let member1 = backendless.userService.findById(objectId)
+        let currentUser = backendless.userService.currentUser
+        userObject.setProperty("FollowedBy", object: currentUser)
+        backendless.userService.update(userObject)
         
-        let query = BackendlessDataQuery()
-        
-        let group = backendless.persistenceService.of(UserGroup.ofClass()).find(query)
-        
-        let currentPage = group.getCurrentPage()
-        
-        for theGroup in currentPage as! [UserGroup] {
-            
-            
-            if theGroup.ownerId != userObject.objectId {
-                
-                theGroup.Following.append(userObject)
-                
-                var error: Fault?
-                
-                let result = backendless.data.update(theGroup, error: &error) as? UserGroup
-                
-                if error == nil {
-                    
-                    print("Member havs been added: \(result)")
-                    
-                } else {
-                    
-                    print("Server reported an error: \(error)")
-                    
-                }
-                
-            } else {
-                
-                print("You are the owner of this group !")
-                
-            }
-            
-        }
     }
     
 }

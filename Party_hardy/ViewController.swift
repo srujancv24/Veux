@@ -31,6 +31,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         super.viewDidLoad()
         
+        self.validUserToken()
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -68,10 +70,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
             backendless.userService.login(
                 UserEmail.text, password:UserPassword.text,
                 response: { ( user : BackendlessUser!) -> () in
-                    print("User has been logged in (ASYNC): \(user)")
+                    print("User has been logged in")
                     self.backendless.userService.setStayLoggedIn( true )
                    self.performSegueWithIdentifier("Login", sender: self)
-                   // self.performSegueWithIdentifier("user", sender: self)
 
                 },
                 error: { ( fault : Fault!) -> () in
@@ -180,6 +181,25 @@ class ViewController: UIViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    func validUserToken() {
+        backendless.userService.isValidUserToken(
+            { ( result : AnyObject!) -> () in
+                print("isValidUserToken (ASYNC): \(result.boolValue)")
+                self.backendless.userService.setStayLoggedIn( true )
+                self .SegueForLoggedInUser()
+            },
+            error: { ( fault : Fault!) -> () in
+                print("Server reported an error (ASYNC): \(fault)")
+            }
+        )
+    }
+    func SegueForLoggedInUser (){
+        self.performSegueWithIdentifier("Login", sender: self)
+        
+    }
+
 
 
 }
