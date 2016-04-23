@@ -30,6 +30,8 @@ class HomeCell : UITableViewCell, UIScrollViewDelegate {
         
         self.EventHost.setTitle(test1.Address! as String, forState: .Normal)
         
+        let email = test1.UEmail
+        
         if(test1.Image != nil){
             
             let url = NSURL(string: test1.Image!)
@@ -37,6 +39,7 @@ class HomeCell : UITableViewCell, UIScrollViewDelegate {
             let dataimage = NSData(contentsOfURL: url!)
             
             self.EventImage.image = UIImage(data: dataimage!)
+            
         }
         
         else

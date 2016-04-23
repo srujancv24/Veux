@@ -15,6 +15,7 @@ class OtherProfileViewController: UIViewController  {
     let SECRET_KEY = "C5DB14C3-420E-500E-FFB2-0AABE09E8F00"
     let VERSION_NUM = "v1"
     
+    @IBOutlet weak var follow: UIButton!
     var backendless = Backendless.sharedInstance()
     var email:String!
     var name:String!
@@ -28,7 +29,6 @@ class OtherProfileViewController: UIViewController  {
         backendless.initApp(APP_ID, secret:SECRET_KEY, version:VERSION_NUM)
         self.backendless.userService.getPersistentUser()
         fetchData()
-        userGroup()
     }
     
     override func didReceiveMemoryWarning() {
@@ -52,33 +52,19 @@ class OtherProfileViewController: UIViewController  {
        
     }
     
-    func userGroup(){
-        
-        //let User = userResults[indexPath.row]
-        
-        
-        
-        let group = self.backendless.persistenceService.of(UserGroup().ofClass())
-        
-        //let member1 = backendless.userService.findById(objectId)
-        var user = UserGroup()
-        user.GroupName = backendless.userService.currentUser.name
-        user.Email = backendless.userService.currentUser.email
-        user.Following.append(userObject)
-        
-        user = group.save(user) as! UserGroup
-        
-        
-        
-        
-        
-        }
+
     
     @IBAction func Follow(sender: UIButton) {
         
         let currentUser = backendless.userService.currentUser
         userObject.setProperty("FollowedBy", object: currentUser)
         backendless.userService.update(userObject)
+        
+        currentUser.setProperty("Following", object: userObject)
+        backendless.userService.update(currentUser)
+        
+        follow.enabled=false
+        follow.hidden = true
         
     }
     

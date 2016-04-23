@@ -63,9 +63,10 @@ class HomeViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("EventCell", forIndexPath: indexPath)
         as! HomeCell
         
-        
-        
         cell.bindData(self.ev[indexPath.row])
+        
+        
+        
         
         
         return cell
@@ -121,6 +122,8 @@ class HomeViewController: UITableViewController {
             let svc = segue.destinationViewController as! OtherProfileViewController;
             
             svc.email = "srujancv24@gmail.com"
+            
+            
             
         }
     }
