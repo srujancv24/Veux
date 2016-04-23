@@ -15,6 +15,7 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
     let picker = UIImagePickerController()
     var strDate:String? = nil
     var url:String?=nil
+    var email:String?
     
     @IBOutlet weak var imageName: UITextField!
     
@@ -41,7 +42,7 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     override func viewDidLoad() {
                 
-      
+      print(email)
         //updateCurrentUserPropsSync()
         super.viewDidLoad()
         

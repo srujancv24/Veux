@@ -18,10 +18,13 @@ class UserProfileViewController: UIViewController {
     var backendless = Backendless.sharedInstance()
     var error: Fault?
     
+    
+    
     @IBOutlet weak var Image: UIImageView!
     @IBOutlet weak var Name: UILabel!
     
     var user:String?
+    
     
     override func viewDidLoad() {
         

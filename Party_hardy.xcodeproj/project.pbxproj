@@ -26,6 +26,7 @@
 		236EA4791C7DD85400105F31 /* red-plastic-cup-clipart-Red-Solo-Cup copy.png in Resources */ = {isa = PBXBuildFile; fileRef = 236EA4771C7DD85400105F31 /* red-plastic-cup-clipart-Red-Solo-Cup copy.png */; };
 		236EA47A1C7DD85400105F31 /* LoginWithFacebook copy.png in Resources */ = {isa = PBXBuildFile; fileRef = 236EA4781C7DD85400105F31 /* LoginWithFacebook copy.png */; };
 		236EA47C1C7DDCD500105F31 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236EA47B1C7DDCD500105F31 /* SignUpViewController.swift */; };
+		237708E81CCB45CD00D93AE3 /* imageNotAvailable.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 237708E71CCB45CD00D93AE3 /* imageNotAvailable.jpg */; };
 		238C64341CB8EA58001789A8 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238C64331CB8EA58001789A8 /* UserProfileViewController.swift */; };
 		238C64361CB9B805001789A8 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238C64351CB9B805001789A8 /* EditProfileViewController.swift */; };
 		23CF8F911C8ADC310083344F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CF8F901C8ADC310083344F /* HomeViewController.swift */; };
@@ -80,6 +81,7 @@
 		236EA4771C7DD85400105F31 /* red-plastic-cup-clipart-Red-Solo-Cup copy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "red-plastic-cup-clipart-Red-Solo-Cup copy.png"; sourceTree = "<group>"; };
 		236EA4781C7DD85400105F31 /* LoginWithFacebook copy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LoginWithFacebook copy.png"; sourceTree = "<group>"; };
 		236EA47B1C7DDCD500105F31 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		237708E71CCB45CD00D93AE3 /* imageNotAvailable.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = imageNotAvailable.jpg; sourceTree = "<group>"; };
 		238C64331CB8EA58001789A8 /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		238C64351CB9B805001789A8 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		23CF8F901C8ADC310083344F /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				234AB1E01CBC2A3B00470F39 /* contacts-50.png */,
 				234AB1E11CBC2A3B00470F39 /* search-50.png */,
 				234AB1E21CBC2A3B00470F39 /* home-50.png */,
+				237708E71CCB45CD00D93AE3 /* imageNotAvailable.jpg */,
 				23423F711C7DD3BC00FA4EE8 /* AppDelegate.swift */,
 				23423F731C7DD3BC00FA4EE8 /* ViewController.swift */,
 				236EA47B1C7DDCD500105F31 /* SignUpViewController.swift */,
@@ -322,6 +325,7 @@
 				236EA47A1C7DD85400105F31 /* LoginWithFacebook copy.png in Resources */,
 				234AB1E31CBC2A3B00470F39 /* contacts-50.png in Resources */,
 				23423F791C7DD3BC00FA4EE8 /* Assets.xcassets in Resources */,
+				237708E81CCB45CD00D93AE3 /* imageNotAvailable.jpg in Resources */,
 				236AD3BF1CAE1A2A00FE7C9E /* veuxlogo.png in Resources */,
 				23423F771C7DD3BC00FA4EE8 /* Main.storyboard in Resources */,
 				236EA4791C7DD85400105F31 /* red-plastic-cup-clipart-Red-Solo-Cup copy.png in Resources */,

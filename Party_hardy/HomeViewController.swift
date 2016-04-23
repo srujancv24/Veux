@@ -115,6 +115,15 @@ class HomeViewController: UITableViewController {
         
         self.presentViewController(alert, animated: true, completion: nil)
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        if (segue.identifier == "Uprofile") {
+            let svc = segue.destinationViewController as! OtherProfileViewController;
+            
+            svc.email = "srujancv24@gmail.com"
+            
+        }
+    }
  
     
     

@@ -830,6 +830,12 @@
                                                 <rect key="frame" x="259" y="8" width="30" height="30"/>
                                             </variation>
                                         </button>
+                                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="1ob-yH-eCy">
+                                            <rect key="frame" x="0.0" y="-2" width="150" height="2"/>
+                                            <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                                <rect key="frame" x="219" y="78" width="150" height="2"/>
+                                            </variation>
+                                        </progressView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JMC-G9-FcL">
                                             <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                             <state key="normal" title="User Name"/>
@@ -838,29 +844,24 @@
                                             </variation>
                                             <connections>
                                                 <action selector="UProfile:" destination="NCU-Za-peL" eventType="touchUpInside" id="wTB-Tq-Y03"/>
+                                                <segue destination="fpt-ro-Jii" kind="show" identifier="Uprofile" id="Pq2-8I-f3T"/>
                                             </connections>
                                         </button>
-                                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="1ob-yH-eCy">
-                                            <rect key="frame" x="0.0" y="-2" width="150" height="2"/>
-                                            <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                                <rect key="frame" x="219" y="78" width="150" height="2"/>
-                                            </variation>
-                                        </progressView>
                                     </subviews>
                                     <variation key="default">
                                         <mask key="subviews">
                                             <exclude reference="Osm-6u-QA9"/>
                                             <exclude reference="SUm-RP-daR"/>
-                                            <exclude reference="JMC-G9-FcL"/>
                                             <exclude reference="1ob-yH-eCy"/>
+                                            <exclude reference="JMC-G9-FcL"/>
                                         </mask>
                                     </variation>
                                     <variation key="heightClass=regular-widthClass=compact">
                                         <mask key="subviews">
                                             <include reference="Osm-6u-QA9"/>
                                             <include reference="SUm-RP-daR"/>
-                                            <include reference="JMC-G9-FcL"/>
                                             <include reference="1ob-yH-eCy"/>
+                                            <include reference="JMC-G9-FcL"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
@@ -888,9 +889,6 @@
                             <barButtonItem title="Filter" id="hlX-bc-3Gc"/>
                         </rightBarButtonItems>
                     </navigationItem>
-                    <connections>
-                        <segue destination="fpt-ro-Jii" kind="show" id="WdR-28-dVi"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="icS-NJ-nhQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1072,14 +1070,10 @@
                             </mask>
                         </variation>
                     </view>
-                    <connections>
-                        <outlet property="Image" destination="Pyf-2s-2VW" id="dZS-bR-j6M"/>
-                        <outlet property="Name" destination="8Cn-sT-eZG" id="iCZ-tC-ksK"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0FY-Lu-1cv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5623.5" y="330"/>
+            <point key="canvasLocation" x="5634" y="-384"/>
         </scene>
         <!--Edit Profile-->
         <scene sceneID="BV7-VS-oDO">

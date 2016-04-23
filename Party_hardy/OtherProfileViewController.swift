@@ -16,6 +16,7 @@ class OtherProfileViewController: UIViewController  {
     let VERSION_NUM = "v1"
     
     var backendless = Backendless.sharedInstance()
+    var email:String!
     
     override func viewDidLoad() {
         
@@ -23,7 +24,6 @@ class OtherProfileViewController: UIViewController  {
         
         backendless.initApp(APP_ID, secret:SECRET_KEY, version:VERSION_NUM)
         self.backendless.userService.getPersistentUser()
-        
         fetchData()
     }
     
@@ -36,7 +36,7 @@ class OtherProfileViewController: UIViewController  {
         let dataQuery = BackendlessDataQuery();
         // query to load user object which has objectId as the currently logged in user
         
-        dataQuery.whereClause = "email = 'srujancv24@gmail.com'"
+        dataQuery.whereClause = "email = '\(email)'"
         // find operation always returns a collection
         
         let collection:BackendlessCollection = backendless.data.of(BackendlessUser.ofClass()).find(dataQuery)

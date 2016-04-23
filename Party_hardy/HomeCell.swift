@@ -30,15 +30,17 @@ class HomeCell : UITableViewCell, UIScrollViewDelegate {
         
         self.EventHost.setTitle(test1.Address! as String, forState: .Normal)
         
-        
-        if let url = NSURL(string: test1.Image!){
+        if(test1.Image != nil){
             
-            let dataimage = NSData(contentsOfURL: url)
+            let url = NSURL(string: test1.Image!)
+            
+            let dataimage = NSData(contentsOfURL: url!)
             
             self.EventImage.image = UIImage(data: dataimage!)
         }
         
-        else{
+        else
+        {
         self.EventImage.image = nil
         }
         
