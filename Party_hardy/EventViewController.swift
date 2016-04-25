@@ -87,7 +87,7 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
         }
         else
         {
-            self.addNewEvent(self.eventName.text!, comments: self.Comments.text!, address: self.address.text!, city: self.city.text!, state: self.state.text!, zipcode: self.zipcode.text!, date: self.date.date, image: self.url!,UName: backendless.userService.currentUser.name, UEmail: backendless.userService.currentUser.email)
+            self.addNewEvent(self.eventName.text!, comments: self.Comments.text!, address: self.address.text!, city: self.city.text!, state: self.state.text!, zipcode: self.zipcode.text!, date: self.date.date, image:"",UName: backendless.userService.currentUser.name, UEmail: backendless.userService.currentUser.email)
         }
     }
     
@@ -125,69 +125,22 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
 //        backendless.userService.currentUser.updateProperties(properties)
         
 //       
-        
-        //Update User
-        let currentUser = backendless.userService.currentUser
-        currentUser.setProperty("name", object: "Srujan Chalasani" )
-        currentUser.setProperty("events", object: event)
-        backendless.userService.update(currentUser)
-        
-    
-        
-        
-        
-//        let updatedName = updatedUser.getProperty("name")
-//        print( "user has been updated. Name \(updatedName)" )
-        
-        
-        
-        
-        
-        
-        
-//        let dataStore = backendless.data.of(event.ofClass())
-//        
-//        // save object synchronously
-//        var error: Fault?
-//        let result = dataStore.save(event, fault: &error) as? test
-//        if error == nil {
-//            print("Event has been created \(result!.Name)")
-//        }
-//        else {
-//            print("Server reported an error: \(error)")
-//        }
-        
-        
-        
-        
-//        let storeData = backendless.data.of(event.ofClass())
-//        storeData.save(event,
-//            response: {(result : AnyObject!) -> Void in
-//               let obj = result as! Events
-//                print ("Event has been created \(obj.Name)")
-//        },
-//            error: {(fault : Fault!) -> Void in
-//                print ("Server reported an Error: \(fault)")
-//        })
+        Types.tryblock({ () -> Void in
+            let currentUser = self.backendless.userService.currentUser
+           
+            currentUser.setProperty("events", object: event)
+            currentUser.setProperty("FollowedBy", object: currentUser)
+            self.backendless.userService.update(currentUser)
+
+            print("User updated")
+            
+            },
+                       
+                       catchblock: { (exception) -> Void in
+                        print("Server reported an error: \(exception)" )
+        })
         
     }
-    
-    
-//    func updateCurrentUserPropsSync() {
-//        Types.tryblock({ () -> Void in
-//            let currentUser = self.backendless.userService.currentUser
-//            print("User has been logged in (SYNC): \(currentUser)")
-//            let properties = [
-//                "name" : "Agent 007"
-//            ]
-//            currentUser.updateProperties( properties )
-//            let updatedUser = self.backendless.userService.update(currentUser)
-//            print("User updated (SYNC): \(updatedUser)")
-//            },
-//                       catchblock: { (exception) -> Void in
-//                        print("Server reported an error: \(exception)" )
-//        })
-//    }
     
    
     @IBAction func selectImage(sender: AnyObject) {

@@ -20,6 +20,7 @@ class OtherProfileViewController: UIViewController  {
     var email:String!
     var name:String!
     var objectId:String!
+    var Uemail = Emails()
     var userObject:BackendlessUser!
     
     override func viewDidLoad() {
@@ -29,6 +30,7 @@ class OtherProfileViewController: UIViewController  {
         backendless.initApp(APP_ID, secret:SECRET_KEY, version:VERSION_NUM)
         self.backendless.userService.getPersistentUser()
         fetchData()
+    
     }
     
     override func didReceiveMemoryWarning() {
@@ -36,6 +38,8 @@ class OtherProfileViewController: UIViewController  {
     }
     
     func fetchData() {
+        
+        print(email)
         
         let dataQuery = BackendlessDataQuery();
         // query to load user object which has objectId as the currently logged in user
@@ -49,22 +53,51 @@ class OtherProfileViewController: UIViewController  {
         userObject = collection.getCurrentPage().first as! BackendlessUser;
         
         name = userObject.getProperty("name").string
-       
+        
+        let follows = backendless.userService.currentUser.getProperty("FollowedB")
+        let events  = backendless.userService.currentUser.getProperty("events")
+        print(follows.count())
+        if (follows.description.containsString(email) || events.description.containsString(backendless.userService.currentUser.email)){
+            print("True")
+            follow.hidden = true
+        }
+        else{
+        print("False")
+        }
+        
+        
+        let coll:BackendlessCollection = backendless.data.of(Emails.ofClass()).find(dataQuery)
+        
+        Uemail = coll.getCurrentPage().first as! Emails;
+        //print(Uemail.email)
+               
     }
     
 
     
     @IBAction func Follow(sender: UIButton) {
         
-        let currentUser = backendless.userService.currentUser
-        userObject.setProperty("FollowedBy", object: currentUser)
-        backendless.userService.update(userObject)
         
-        currentUser.setProperty("Following", object: userObject)
-        backendless.userService.update(currentUser)
         
-        follow.enabled=false
-        follow.hidden = true
+        Types.tryblock({ () -> Void in
+            
+            let currentUser = self.backendless.userService.currentUser
+            
+            currentUser.setProperty("FollowedB", object:self.Uemail)
+            
+            self.backendless.userService.update(currentUser)
+            
+            self.follow.enabled=false
+            self.follow.hidden = true
+            print("User updated")
+            
+            },
+                       
+            catchblock: { (exception) -> Void in
+            print("Server reported an error: \(exception)" )
+        })
+
+        
         
     }
     

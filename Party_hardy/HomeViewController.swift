@@ -8,10 +8,12 @@
 
 import Foundation
 
+
 class HomeViewController: UITableViewController {
     
 
     var ev:[test]=[]
+    var email:String?
     
     var backendless = Backendless.sharedInstance()
     
@@ -64,10 +66,7 @@ class HomeViewController: UITableViewController {
         as! HomeCell
         
         cell.bindData(self.ev[indexPath.row])
-        
-        
-        
-        
+
         
         return cell
     }
@@ -77,6 +76,7 @@ class HomeViewController: UITableViewController {
         
         return ev.count
     }
+    
     
     @IBAction func mapLoad(sender: AnyObject) {
         
@@ -119,9 +119,17 @@ class HomeViewController: UITableViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if (segue.identifier == "Uprofile") {
+            
+            let button = sender as! UIButton
+            let view = button.superview!
+            let cell = view.superview as! HomeCell
+            
+            let indexPath = tableView.indexPathForCell(cell)
+            email = ev[indexPath!.row].UEmail
+    
             let svc = segue.destinationViewController as! OtherProfileViewController;
             
-            svc.email = "srujancv24@gmail.com"
+            svc.email = email
             
             
             

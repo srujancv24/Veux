@@ -31,7 +31,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         super.viewDidLoad()
         
-        self.validUserToken()
+        //self.validUserToken()
         
         // Do any additional setup after loading the view, typically from a nib.
     }

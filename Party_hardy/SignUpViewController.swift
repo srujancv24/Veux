@@ -88,7 +88,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     func attemptSignUp()
     {
-        print("Attempting sign up")
+       print("Attempting sign up")
        Types.tryblock({ () -> Void in
             
             let user = BackendlessUser()
