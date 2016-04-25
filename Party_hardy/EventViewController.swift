@@ -42,8 +42,6 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     override func viewDidLoad() {
                 
-      print(email)
-        //updateCurrentUserPropsSync()
         super.viewDidLoad()
         
         picker.delegate = self
@@ -77,9 +75,6 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
                 self.addNewEvent(self.eventName.text!, comments: self.Comments.text!, address: self.address.text!, city: self.city.text!, state: self.state.text!, zipcode: self.zipcode.text!, date: self.date.date, image: self.url!,UName: self.backendless.userService.currentUser.name, UEmail: self.backendless.userService.currentUser.email)
                 
                 
-                
-                self.tabBarController?.selectedIndex=0
-                
                 }, error: {(let fault: Fault!) ->() in
                     print("\(fault)")
                 }
@@ -105,31 +100,11 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
         event.UEmail = UEmail
         
         
-//        let dataQuery = BackendlessDataQuery();
-//        // query to load user object which has objectId as the currently logged in user
-//        
-//        dataQuery.whereClause = "objectId = '\(backendless.userService.currentUser.objectId)'"
-//        // find operation always returns a collection
-//        
-//        let collection:BackendlessCollection = backendless.data.of(BackendlessUser.ofClass()).find(dataQuery)
-//        // take the first object from the collection, since there is always going to be just one
-//        
-//        let userObject = collection.getCurrentPage().first as! BackendlessUser;
-//        
-//        print(userObject)
-//        
-//        let  properties = [
-//            "name" : "Me",
-//            "events" : event
-//        ]
-//        backendless.userService.currentUser.updateProperties(properties)
-        
-//       
         Types.tryblock({ () -> Void in
             let currentUser = self.backendless.userService.currentUser
            
             currentUser.setProperty("events", object: event)
-            currentUser.setProperty("FollowedBy", object: currentUser)
+           
             self.backendless.userService.update(currentUser)
 
             print("User updated")

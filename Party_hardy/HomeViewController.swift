@@ -41,11 +41,11 @@ class HomeViewController: UITableViewController {
         
         if error == nil {
             self.ev.appendContentsOf(result.data as! [test]!)
-            let contacts = result.getCurrentPage()
-            for obj in contacts as! [test]{
-                //print("\(obj.Image)")
-               
-            }
+//            let contacts = result.getCurrentPage()
+//            for obj in contacts as! [test]{
+//                //print("\(obj.Image)")
+//               
+//            }
         }
             
         else {

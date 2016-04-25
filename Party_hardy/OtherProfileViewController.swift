@@ -15,7 +15,13 @@ class OtherProfileViewController: UIViewController  {
     let SECRET_KEY = "C5DB14C3-420E-500E-FFB2-0AABE09E8F00"
     let VERSION_NUM = "v1"
     
+    @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var follow: UIButton!
+    @IBOutlet weak var followedBy: UILabel!
+    @IBOutlet weak var following: UILabel!
+    @IBOutlet weak var events: UILabel!
+    
     var backendless = Backendless.sharedInstance()
     var email:String!
     var name:String!
@@ -49,14 +55,40 @@ class OtherProfileViewController: UIViewController  {
         
         let collection:BackendlessCollection = backendless.data.of(BackendlessUser.ofClass()).find(dataQuery)
         // take the first object from the collection, since there is always going to be just one
-        
+        //Fetch User details
         userObject = collection.getCurrentPage().first as! BackendlessUser;
         
-        name = userObject.getProperty("name").string
+        name = userObject.getProperty("name").description
+        let follows = userObject.getProperty("FollowedB")
+        let events  = userObject.getProperty("events")
+        let image = userObject.getProperty("image")
         
-        let follows = backendless.userService.currentUser.getProperty("FollowedB")
-        let events  = backendless.userService.currentUser.getProperty("events")
-        print(follows.count())
+        print(image.description)
+        self.userName.text = name
+        self.following.text = follows.count().description
+        self.events.text = events.count().description
+       
+            
+            let url = NSURL(string: image.description)
+            
+        if url?.description != nil {
+            let dataimage = NSData(contentsOfURL: url!)
+            
+            self.image.image = UIImage(data: dataimage!)
+        }
+            
+            
+        else
+        {
+            let img = UIImage(named: "imageNotAvailable.jpg")
+            let imgData:NSData? = UIImageJPEGRepresentation(img!, 0.0)
+            self.image.image = UIImage(data: imgData!)
+        }
+
+        
+        print(events)
+        
+        //Check if User is already followed
         if (follows.description.containsString(email) || events.description.containsString(backendless.userService.currentUser.email)){
             print("True")
             follow.hidden = true
@@ -66,8 +98,8 @@ class OtherProfileViewController: UIViewController  {
         }
         
         
+        //Fetch email of users(following)
         let coll:BackendlessCollection = backendless.data.of(Emails.ofClass()).find(dataQuery)
-        
         Uemail = coll.getCurrentPage().first as! Emails;
         //print(Uemail.email)
                

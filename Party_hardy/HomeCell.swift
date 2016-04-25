@@ -30,7 +30,6 @@ class HomeCell : UITableViewCell, UIScrollViewDelegate {
         
         self.EventHost.setTitle(test1.Address! as String, forState: .Normal)
         
-        let email = test1.UEmail
         
         if(test1.Image != nil){
             
@@ -44,7 +43,9 @@ class HomeCell : UITableViewCell, UIScrollViewDelegate {
         
         else
         {
-        self.EventImage.image = UIImage(named: "imageNotAvailable.jpg")
+        let img = UIImage(named: "imageNotAvailable.jpg")
+        let imgData:NSData? = UIImageJPEGRepresentation(img!, 0.0)
+        self.EventImage.image = UIImage(data: imgData!)
         }
         
        
