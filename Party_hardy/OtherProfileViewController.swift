@@ -109,28 +109,70 @@ class OtherProfileViewController: UIViewController  {
     
     @IBAction func Follow(sender: UIButton) {
         
+//        let tEmail = Emails()
+//        tEmail.email = "sss@gmailscs.com"
+//        
+//        Types.tryblock({ () -> Void in
+//            
+//            let currentUser = self.backendless.userService.currentUser
+//            
+//            currentUser.setProperty("FollowedB", object:tEmail)
+//            
+//            
+//            self.backendless.userService.update(currentUser)
+//            
+//            self.follow.enabled=false
+//            self.follow.hidden = true
+//            print("User updated")
+//            
+//            },
+//                       
+//            catchblock: { (exception) -> Void in
+//            print("Server reported an error: \(exception)" )
+//        })
         
-        
-        Types.tryblock({ () -> Void in
-            
-            let currentUser = self.backendless.userService.currentUser
-            
-            currentUser.setProperty("FollowedB", object:self.Uemail)
-            
-            self.backendless.userService.update(currentUser)
-            
-            self.follow.enabled=false
-            self.follow.hidden = true
-            print("User updated")
-            
-            },
-                       
-            catchblock: { (exception) -> Void in
-            print("Server reported an error: \(exception)" )
-        })
 
+//        let uGroup = UserGroups()
+//        uGroup.users.append(self.userObject)
+//        
+//        
+//        
+//        
+        let dataStore = backendless.data.of(UserGroups.ofClass())
+        var error: Fault?
+
+        let result = dataStore.findFault(&error)
         
+        if error == nil {
+            let contacts = result.getCurrentPage()
+            
+        for theGroup in contacts as! [UserGroups] {
+            
+            
+            
+                    
+                    theGroup.users.append(userObject)
+                    
+                    var error: Fault?
+                    
+                    let result = backendless.data.update(theGroup, error: &error) as? UserGroups
+                    
+                    if error == nil {
+                        
+                        print("Member havs been added: \(result)")
+                        
+                    }
+                    
+                    else{
+                        print("Server reported an error: \(error)")
+                    }
+                
+            }
+            
+        }
         
+        else{
+            print("error: \(error)")
+        }
     }
-    
 }

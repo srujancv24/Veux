@@ -19,7 +19,6 @@ class HomeViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.reloadData()
         self.fetchData()
        
     }
@@ -29,8 +28,6 @@ class HomeViewController: UITableViewController {
     }
     
     func fetchData(){
-    
-        self.tableView.reloadData()
 
         
         let dataStore = backendless.data.of(test.ofClass())

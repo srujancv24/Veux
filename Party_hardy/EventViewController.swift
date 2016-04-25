@@ -104,7 +104,7 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
             let currentUser = self.backendless.userService.currentUser
            
             currentUser.setProperty("events", object: event)
-           
+            
             self.backendless.userService.update(currentUser)
 
             print("User updated")
