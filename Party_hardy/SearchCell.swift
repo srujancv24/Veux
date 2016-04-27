@@ -10,7 +10,7 @@ import Foundation
 
 
 
-class SearchCell: UITableViewCell, UIScrollViewDelegate {
+class SearchCell: UITableViewCell {
 
     
    
@@ -19,9 +19,6 @@ class SearchCell: UITableViewCell, UIScrollViewDelegate {
     @IBOutlet weak var UName: UIButton!
     @IBOutlet weak var address: UIButton!
     
-    override func setSelected(selected: Bool, animated: Bool) {
-        self.setSelected(selected, animated:animated )
-    }
     
     func bindData(test1: test) {
         

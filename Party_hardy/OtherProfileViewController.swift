@@ -148,6 +148,7 @@ class OtherProfileViewController: UIViewController  {
                     var error: Fault?
                     
                     let result = backendless.data.update(theGroup, error: &error) as? UserGroups
+            
                     
                     if error == nil {
                         
