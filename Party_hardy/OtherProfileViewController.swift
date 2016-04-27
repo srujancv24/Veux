@@ -130,14 +130,9 @@ class OtherProfileViewController: UIViewController  {
 //            catchblock: { (exception) -> Void in
 //            print("Server reported an error: \(exception)" )
 //        })
-        
-
 //        let uGroup = UserGroups()
 //        uGroup.users.append(self.userObject)
-//        
-//        
-//        
-//        
+       
         let dataStore = backendless.data.of(UserGroups.ofClass())
         var error: Fault?
 
@@ -148,9 +143,6 @@ class OtherProfileViewController: UIViewController  {
             
         for theGroup in contacts as! [UserGroups] {
             
-            
-            
-                    
                     theGroup.users.append(userObject)
                     
                     var error: Fault?

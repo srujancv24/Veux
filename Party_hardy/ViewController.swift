@@ -26,12 +26,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         UserPassword.delegate=self
         
         backendless.initApp(APP_ID, secret:SECRET_KEY, version:VERSION_NUM)
-        
-       
-        
         super.viewDidLoad()
         
-        //self.validUserToken()
+        self.validUserToken()
         
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -50,9 +47,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
             permissions: ["public_profile", "email", "user_friends"],
             response: {(result : NSNumber!) -> () in
                 print ("Result: \(result)")
-              self.backendless.userService.setStayLoggedIn( true )
-                // self.SegueForLoggedInUser()
-               self.performSegueWithIdentifier("Login", sender: self)
             },
             error: { (fault : Fault!) -> () in
                 print("Server reported an error: \(fault)")

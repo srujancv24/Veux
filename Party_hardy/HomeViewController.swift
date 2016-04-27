@@ -27,17 +27,23 @@ class HomeViewController: UITableViewController {
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        
+    }
+       // viewDidLoad()
+    
+    
     func fetchData(){
 
         
         let dataStore = backendless.data.of(test.ofClass())
         var error: Fault?
         
-    
         let result = dataStore.findFault(&error)
         
         if error == nil {
             self.ev.appendContentsOf(result.data as! [test]!)
+            print(ev)
 //            let contacts = result.getCurrentPage()
 //            for obj in contacts as! [test]{
 //                //print("\(obj.Image)")
@@ -112,7 +118,10 @@ class HomeViewController: UITableViewController {
         alert.addAction(appleMaps)
         
         self.presentViewController(alert, animated: true, completion: nil)
+    
     }
+    
+    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if (segue.identifier == "Uprofile") {
@@ -123,6 +132,7 @@ class HomeViewController: UITableViewController {
             
             let indexPath = tableView.indexPathForCell(cell)
             email = ev[indexPath!.row].UEmail
+            
     
             let svc = segue.destinationViewController as! OtherProfileViewController;
             
