@@ -88,7 +88,7 @@ class SearchViewController: UITableViewController {
         if searchController.active && searchController.searchBar.text != "" {
             return filteredCandies.count
         }
-        return candies.count
+        return ev.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -97,9 +97,9 @@ class SearchViewController: UITableViewController {
         if searchController.active && searchController.searchBar.text != "" {
             candy = filteredCandies[indexPath.row]
         } else {
-            candy = candies[indexPath.row]
+           // candy = candies[indexPath.row]
         }
-        cell.textLabel!.text = candy.name
+        cell.textLabel!.text = ev[indexPath.row].UEmail
        // cell.detailTextLabel!.text = candy.category
         return cell
     }
@@ -133,7 +133,7 @@ class SearchViewController: UITableViewController {
 }
 
 extension SearchViewController: UISearchBarDelegate {
-    // MARK: - UISearchBar Delegate
+    
     func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         filterContentForSearchText(searchBar.text!, scope: searchBar.scopeButtonTitles![selectedScope])
     }
@@ -142,7 +142,7 @@ extension SearchViewController: UISearchBarDelegate {
 
 
 extension SearchViewController: UISearchResultsUpdating {
-    // MARK: - UISearchResultsUpdating Delegate
+   
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         let searchBar = searchController.searchBar
         let scope = searchBar.scopeButtonTitles![searchBar.selectedScopeButtonIndex]
