@@ -697,7 +697,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="9KF-yl-2OH" kind="relationship" relationship="viewControllers" id="sHh-2c-Szr"/>
-                        <segue destination="Gw2-x8-0Si" kind="relationship" relationship="viewControllers" id="79v-N9-Owc"/>
+                        <segue destination="slW-AU-GMa" kind="relationship" relationship="viewControllers" id="bAA-pa-M7Z"/>
                         <segue destination="40t-0Y-SEz" kind="relationship" relationship="viewControllers" id="EtR-Ql-11r"/>
                     </connections>
                 </tabBarController>
@@ -1152,7 +1152,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0FY-Lu-1cv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6465" y="325.5"/>
+            <point key="canvasLocation" x="6313.5" y="330"/>
         </scene>
         <!--Edit Profile-->
         <scene sceneID="BV7-VS-oDO">
@@ -2357,98 +2357,48 @@
             </objects>
             <point key="canvasLocation" x="6481.5" y="960"/>
         </scene>
-        <!--Search View Controller-->
-        <scene sceneID="M1O-Og-6RH">
+        <!--Search-->
+        <scene sceneID="3ll-ar-J71">
             <objects>
-                <viewController id="Gw2-x8-0Si" customClass="SearchViewController" customModule="Party_hardy" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="m82-5b-vl4"/>
-                        <viewControllerLayoutGuide type="bottom" id="2gH-8F-J60"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="5mh-J3-CVc">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                <tableViewController title="Search" id="1bW-y0-gRq" customClass="SearchViewController" customModule="Party_hardy" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" sectionHeaderHeight="28" sectionFooterHeight="28" id="4ht-eZ-GHf">
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="sTb-29-BHQ">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="Gw2-x8-0Si" id="Szb-oN-b4h"/>
-                                </connections>
-                            </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MHe-nA-lxd">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="gXT-O5-KyX">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gXT-O5-KyX" id="W3x-YC-ZCQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="sTb-29-BHQ" firstAttribute="leading" secondItem="MHe-nA-lxd" secondAttribute="leading" id="8uT-S3-NQp"/>
-                            <constraint firstItem="MHe-nA-lxd" firstAttribute="top" secondItem="sTb-29-BHQ" secondAttribute="bottom" id="K8g-ab-b8D"/>
-                            <constraint firstItem="sTb-29-BHQ" firstAttribute="leading" secondItem="5mh-J3-CVc" secondAttribute="leading" id="YCk-Sh-Y4M"/>
-                            <constraint firstAttribute="bottom" secondItem="MHe-nA-lxd" secondAttribute="bottom" id="YeO-lR-Rdf"/>
-                            <constraint firstItem="sTb-29-BHQ" firstAttribute="top" secondItem="5mh-J3-CVc" secondAttribute="top" id="ZqK-xC-Nps"/>
-                            <constraint firstAttribute="trailing" secondItem="sTb-29-BHQ" secondAttribute="trailing" id="kpN-b1-1G2"/>
-                            <constraint firstItem="sTb-29-BHQ" firstAttribute="trailing" secondItem="MHe-nA-lxd" secondAttribute="trailing" id="nEK-sg-pH3"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="sTb-29-BHQ"/>
-                                <exclude reference="MHe-nA-lxd"/>
-                            </mask>
-                            <mask key="constraints">
-                                <exclude reference="8uT-S3-NQp"/>
-                                <exclude reference="YCk-Sh-Y4M"/>
-                                <exclude reference="ZqK-xC-Nps"/>
-                                <exclude reference="kpN-b1-1G2"/>
-                                <exclude reference="nEK-sg-pH3"/>
-                                <exclude reference="K8g-ab-b8D"/>
-                                <exclude reference="YeO-lR-Rdf"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=regular-widthClass=compact">
-                            <mask key="subviews">
-                                <include reference="sTb-29-BHQ"/>
-                                <include reference="MHe-nA-lxd"/>
-                            </mask>
-                            <mask key="constraints">
-                                <include reference="8uT-S3-NQp"/>
-                                <include reference="YCk-Sh-Y4M"/>
-                                <include reference="ZqK-xC-Nps"/>
-                                <include reference="kpN-b1-1G2"/>
-                                <include reference="nEK-sg-pH3"/>
-                                <include reference="K8g-ab-b8D"/>
-                                <include reference="YeO-lR-Rdf"/>
-                            </mask>
-                        </variation>
-                    </view>
-                    <tabBarItem key="tabBarItem" systemItem="search" id="nsW-5q-5KK"/>
-                    <connections>
-                        <outlet property="searchDisplayController" destination="I92-G0-Vmk" id="XGM-wA-q4c"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yxi-60-FHt" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="I92-G0-Vmk">
-                    <connections>
-                        <outlet property="delegate" destination="Gw2-x8-0Si" id="FpG-aP-Qct"/>
-                        <outlet property="searchBar" destination="sTb-29-BHQ" id="p1V-Ea-UfX"/>
-                        <outlet property="searchContentsController" destination="Gw2-x8-0Si" id="4Ig-lg-HGr"/>
-                        <outlet property="searchResultsDataSource" destination="Gw2-x8-0Si" id="RJB-O4-wwz"/>
-                        <outlet property="searchResultsDelegate" destination="Gw2-x8-0Si" id="jwe-C0-Pzd"/>
-                    </connections>
-                </searchDisplayController>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Ucell" rowHeight="75" id="Oxk-Xr-9qT">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Oxk-Xr-9qT" id="onL-VY-rVe">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="1bW-y0-gRq" id="M1j-tq-FHK"/>
+                            <outlet property="delegate" destination="1bW-y0-gRq" id="lD6-vw-lVf"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="D6P-19-6af"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QLi-L3-qZl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2995.5" y="325.5"/>
+            <point key="canvasLocation" x="3088.5" y="330"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="PdY-qS-F7W">
+            <objects>
+                <navigationController id="slW-AU-GMa" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="search" id="GA6-UV-tha"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ckq-8r-uxq">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="1bW-y0-gRq" kind="relationship" relationship="rootViewController" id="u8H-CJ-wGG"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PZ3-dP-mJX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2299.5" y="330"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="g43-wo-wVa">

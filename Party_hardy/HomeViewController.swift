@@ -43,7 +43,7 @@ class HomeViewController: UITableViewController {
         
         if error == nil {
             self.ev.appendContentsOf(result.data as! [test]!)
-            print(ev)
+            
 //            let contacts = result.getCurrentPage()
 //            for obj in contacts as! [test]{
 //                //print("\(obj.Image)")
@@ -69,8 +69,8 @@ class HomeViewController: UITableViewController {
         as! HomeCell
         
         cell.bindData(self.ev[indexPath.row])
+        print(ev[indexPath.row].UEmail)
 
-        
         return cell
     }
     
