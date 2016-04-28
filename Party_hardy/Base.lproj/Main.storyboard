@@ -2974,6 +2974,15 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vab-3p-9Vy">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="20" y="475" width="42" height="21"/>
+                                </variation>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -3036,6 +3045,7 @@
                                 <exclude reference="D56-3c-ljs"/>
                                 <exclude reference="hNa-uO-O2b"/>
                                 <exclude reference="vbE-eP-Cug"/>
+                                <exclude reference="vab-3p-9Vy"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="4PU-fl-Uab"/>
@@ -3098,6 +3108,7 @@
                                 <include reference="D56-3c-ljs"/>
                                 <include reference="hNa-uO-O2b"/>
                                 <include reference="vbE-eP-Cug"/>
+                                <include reference="vab-3p-9Vy"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="4PU-fl-Uab"/>
