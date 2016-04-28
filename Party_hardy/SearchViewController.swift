@@ -9,11 +9,13 @@
 import UIKit
 
 class SearchViewController: UITableViewController {
+
     
     var ev:[test]=[]
     var candies = [Candy]()
     var filteredCandies = [Candy]()
-    let searchController = UISearchController(searchResultsController: nil)
+    
+    var searchController:UISearchController!
     
     var backendless = Backendless.sharedInstance()
     // MARK: - View Setup
@@ -21,6 +23,7 @@ class SearchViewController: UITableViewController {
         super.viewDidLoad()
         fetchData()
         
+        searchController = UISearchController(searchResultsController: nil)
         // Setup the Search Controller
         searchController.searchResultsUpdater = self
        
@@ -70,10 +73,10 @@ class SearchViewController: UITableViewController {
         
     }
     
-    override func viewWillAppear(animated: Bool) {
-        //clearsSelectionOnViewWillAppear = splitViewController!.collapsed
-        super.viewWillAppear(animated)
-    }
+//    override func viewWillAppear(animated: Bool) {
+//        //clearsSelectionOnViewWillAppear = splitViewController!.collapsed
+//        super.viewWillAppear(animated)
+//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -88,18 +91,28 @@ class SearchViewController: UITableViewController {
         if searchController.active && searchController.searchBar.text != "" {
             return filteredCandies.count
         }
-        return candies.count
+        return 0
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Ucell", forIndexPath: indexPath)
+ //let cell = tableView.dequeueReusableCellWithIdentifier("Ucell", forIndexPath: indexPath)
+ 
+       let cell = tableView.dequeueReusableCellWithIdentifier("Ucell", forIndexPath: indexPath)
+            as! SearchCell
+        
+       cell.bindData(self.ev[indexPath.row])
         let candy: Candy
         if searchController.active && searchController.searchBar.text != "" {
             candy = filteredCandies[indexPath.row]
         } else {
-            candy = candies[indexPath.row]
+           // candy = candies[indexPath.row]
+            
         }
-        cell.textLabel!.text = candy.name
+        
+
+//        }
+        // cell.textLabel!.text = ev[indexPath.row].UEmail
+        
        // cell.detailTextLabel!.text = candy.category
         return cell
     }
@@ -129,23 +142,25 @@ class SearchViewController: UITableViewController {
 //            }
 //        }
 //    }
-//    
+    
 }
 
 extension SearchViewController: UISearchBarDelegate {
-    // MARK: - UISearchBar Delegate
+    
     func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         filterContentForSearchText(searchBar.text!, scope: searchBar.scopeButtonTitles![selectedScope])
+        
     }
 }
     
 
 
 extension SearchViewController: UISearchResultsUpdating {
-    // MARK: - UISearchResultsUpdating Delegate
+   
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         let searchBar = searchController.searchBar
         let scope = searchBar.scopeButtonTitles![searchBar.selectedScopeButtonIndex]
         filterContentForSearchText(searchController.searchBar.text!, scope: scope)
     }
 }
+

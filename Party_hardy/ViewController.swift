@@ -35,6 +35,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func fb(sender: UIButton) {
           self.easyFacebookLogin()
+       
             }
     
     
@@ -47,6 +48,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             permissions: ["public_profile", "email", "user_friends"],
             response: {(result : NSNumber!) -> () in
                 print ("Result: \(result)")
+                
             },
             error: { (fault : Fault!) -> () in
                 print("Server reported an error: \(fault)")

@@ -77,14 +77,12 @@ class OtherProfileViewController: UIViewController  {
             self.image.image = UIImage(data: dataimage!)
         }
             
-            
         else
         {
             let img = UIImage(named: "imageNotAvailable.jpg")
             let imgData:NSData? = UIImageJPEGRepresentation(img!, 0.0)
             self.image.image = UIImage(data: imgData!)
         }
-
         
         print(events)
         
@@ -97,15 +95,12 @@ class OtherProfileViewController: UIViewController  {
         print("False")
         }
         
-        
         //Fetch email of users(following)
         let coll:BackendlessCollection = backendless.data.of(Emails.ofClass()).find(dataQuery)
         Uemail = coll.getCurrentPage().first as! Emails;
         //print(Uemail.email)
                
     }
-    
-
     
     @IBAction func Follow(sender: UIButton) {
         
@@ -152,13 +147,11 @@ class OtherProfileViewController: UIViewController  {
                     if error == nil {
                         
                         print("Member havs been added: \(result)")
-                        
                     }
                     
                     else{
                         print("Server reported an error: \(error)")
                     }
-                
             }
             
         }

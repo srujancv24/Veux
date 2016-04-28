@@ -24,7 +24,6 @@ class HomeViewController: UITableViewController {
     }
     @IBAction func UProfile(sender: UIButton) {
         
-        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -120,9 +119,7 @@ class HomeViewController: UITableViewController {
         self.presentViewController(alert, animated: true, completion: nil)
     
     }
-    
-    
-    
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if (segue.identifier == "Uprofile") {
             
@@ -133,12 +130,9 @@ class HomeViewController: UITableViewController {
             let indexPath = tableView.indexPathForCell(cell)
             email = ev[indexPath!.row].UEmail
             
-    
             let svc = segue.destinationViewController as! OtherProfileViewController;
             
             svc.email = email
-            
-            
             
         }
     }
