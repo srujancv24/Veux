@@ -131,9 +131,7 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        
-        
-        
+                
         image.contentMode = .ScaleAspectFit
         image.image = chosenImage
         

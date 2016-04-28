@@ -9,12 +9,9 @@
 import UIKit
 
 class SearchViewController: UITableViewController {
-
     
-    var ev:[test]=[]
     var filteredEv:[test]=[]
-    var candies = [Candy]()
-    var filteredCandies = [Candy]()
+
     
     var searchController:UISearchController!
     
@@ -22,7 +19,6 @@ class SearchViewController: UITableViewController {
     // MARK: - View Setup
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchData()
         
         searchController = UISearchController(searchResultsController: nil)
         // Setup the Search Controller
@@ -33,51 +29,11 @@ class SearchViewController: UITableViewController {
         searchController.dimsBackgroundDuringPresentation = false
         
         // Setup the Scope Bar
-        searchController.searchBar.scopeButtonTitles = ["All", "Events", "Name"]
+        searchController.searchBar.scopeButtonTitles = ["All", "Events", "User"]
         tableView.tableHeaderView = searchController.searchBar
         
-        candies = [
-            Candy(category:"Chocolate", name:"Chocolate Bar"),
-            Candy(category:"Chocolate", name:"Chocolate Chip"),
-            Candy(category:"Chocolate", name:"Dark Chocolate"),
-            Candy(category:"Hard", name:"Lollipop"),
-            Candy(category:"Hard", name:"Candy Cane"),
-            Candy(category:"Hard", name:"Jaw Breaker"),
-            Candy(category:"Other", name:"Caramel"),
-            Candy(category:"Other", name:"Sour Chew"),
-            Candy(category:"Other", name:"Gummi Bear")]
         
         }
-    
-    
-    func fetchData(){
-        
-        
-        let dataStore = backendless.data.of(test.ofClass())
-        var error: Fault?
-        
-        let result = dataStore.findFault(&error)
-        
-        if error == nil {
-            self.ev.appendContentsOf(result.data as! [test]!)
-            
-            //            let contacts = result.getCurrentPage()
-            //            for obj in contacts as! [test]{
-            //                //print("\(obj.Image)")
-            //
-            //            }
-        }
-            
-        else {
-            print("Server reported an error: \(error)")
-        }
-        
-    }
-    
-//    override func viewWillAppear(animated: Bool) {
-//        //clearsSelectionOnViewWillAppear = splitViewController!.collapsed
-//        super.viewWillAppear(animated)
-//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -93,7 +49,9 @@ class SearchViewController: UITableViewController {
             print(filteredEv.count)
             return filteredEv.count
         }
+        else{
         return 0
+        }
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -102,12 +60,9 @@ class SearchViewController: UITableViewController {
             as! SearchCell
         
         
-
         if searchController.active && searchController.searchBar.text != "" {
-            cell.bindData(self.ev[indexPath.row])
+            cell.bindData(self.filteredEv[indexPath.row])
         } else {
-            print(self.filteredEv[indexPath.row].Name)
-          cell.bindData(self.filteredEv[indexPath.row])
             
         }
         
@@ -115,22 +70,38 @@ class SearchViewController: UITableViewController {
     }
     
     func filterContentForSearchText(searchText: String, scope: String = "All") {
-//        filteredCandies = candies.filter({( candy : Candy) -> Bool in
-//            let categoryMatch = (scope == "All") || (candy.category == scope)
-//            print(scope)
-//            return categoryMatch && candy.name.lowercaseString.containsString(searchText.lowercaseString)
-        
-    
-        filteredEv = ev.filter({(event1:test) ->Bool in
+
+        let dataQuery = BackendlessDataQuery()
+        print(scope)
+            //print(searchText)
+        if scope=="All" {
             
-            let match  = (scope == "All")
+            let whereClause = "UName LIKE '\(searchText)%' OR Name LIKE '\(searchText)%'"
+            dataQuery.whereClause = whereClause
             
-            return match && event1.Name!.lowercaseString.containsString(searchText.lowercaseString)
+        }
+        if scope=="User" {
+            let whereClause = "UName LIKE '\(searchText)%'"
+            dataQuery.whereClause = whereClause
+        }
         
-                })
-        
-        
-        tableView.reloadData()
+        if scope=="Events" {
+            let whereClause = "Name LIKE '\(searchText)%'"
+            dataQuery.whereClause = whereClause
+        }
+            
+            
+            var error: Fault?
+            let bc = backendless.data.of(test.ofClass()).find(dataQuery, fault: &error)
+            if error == nil {
+                self.filteredEv.removeAll()
+                self.filteredEv.appendContentsOf(bc.data as! [test]!)
+                
+            }
+            else {
+                print("Server reported an error: \(error)")
+            }
+            self.tableView.reloadData()
     }
     
     // MARK: - Segues
