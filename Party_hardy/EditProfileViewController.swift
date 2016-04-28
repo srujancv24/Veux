@@ -100,3 +100,8 @@ class EditProfileViewController: UIViewController , UIImagePickerControllerDeleg
         dismissViewControllerAnimated(true, completion: nil)
     }
 }
+
+//let currentUser = backendless.userService.currentUser
+//currentUser.setProperty("name", object: "Srujan Chalasani" )
+//currentUser.setProperty("events", object: event)
+//backendless.userService.update(currentUser)
