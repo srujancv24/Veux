@@ -15,6 +15,7 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
     let picker = UIImagePickerController()
     var strDate:String? = nil
     var url:String?=nil
+    var email:String?
     
     @IBOutlet weak var imageName: UITextField!
     
@@ -41,8 +42,6 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     override func viewDidLoad() {
                 
-      
-        //updateCurrentUserPropsSync()
         super.viewDidLoad()
         
         picker.delegate = self
@@ -73,11 +72,8 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
                 self.url = uploadedFile.fileURL
                 
                 
-                self.addNewEvent(self.eventName.text!, comments: self.Comments.text!, address: self.address.text!, city: self.city.text!, state: self.state.text!, zipcode: self.zipcode.text!, date: self.date.date, image: self.url!)
+                self.addNewEvent(self.eventName.text!, comments: self.Comments.text!, address: self.address.text!, city: self.city.text!, state: self.state.text!, zipcode: self.zipcode.text!, date: self.date.date, image: self.url!,UName: self.backendless.userService.currentUser.name, UEmail: self.backendless.userService.currentUser.email)
                 
-                
-                
-                self.tabBarController?.selectedIndex=0
                 
                 }, error: {(let fault: Fault!) ->() in
                     print("\(fault)")
@@ -86,11 +82,11 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
         }
         else
         {
-            self.addNewEvent(self.eventName.text!, comments: self.Comments.text!, address: self.address.text!, city: self.city.text!, state: self.state.text!, zipcode: self.zipcode.text!, date: self.date.date, image: self.url!)
+            self.addNewEvent(self.eventName.text!, comments: self.Comments.text!, address: self.address.text!, city: self.city.text!, state: self.state.text!, zipcode: self.zipcode.text!, date: self.date.date, image:"",UName: backendless.userService.currentUser.name, UEmail: backendless.userService.currentUser.email)
         }
     }
     
-    func addNewEvent(name: String, comments: String, address: String, city: String, state: String, zipcode: String, date:NSDate, image:String){
+    func addNewEvent(name: String, comments: String, address: String, city: String, state: String, zipcode: String, date:NSDate, image:String, UName:String, UEmail:String){
     let event = test()
         event.Name = name
         event.Comments=comments
@@ -100,84 +96,26 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
         event.Zipcode=zipcode
         event.EventDate=date
         event.Image=url
+        event.UName = UName
+        event.UEmail = UEmail
         
         
-//        let dataQuery = BackendlessDataQuery();
-//        // query to load user object which has objectId as the currently logged in user
-//        
-//        dataQuery.whereClause = "objectId = '\(backendless.userService.currentUser.objectId)'"
-//        // find operation always returns a collection
-//        
-//        let collection:BackendlessCollection = backendless.data.of(BackendlessUser.ofClass()).find(dataQuery)
-//        // take the first object from the collection, since there is always going to be just one
-//        
-//        let userObject = collection.getCurrentPage().first as! BackendlessUser;
-//        
-//        print(userObject)
-//        
-//        let  properties = [
-//            "name" : "Me",
-//            "events" : event
-//        ]
-//        backendless.userService.currentUser.updateProperties(properties)
-        
-//        
-        let currentUser = backendless.userService.currentUser
-        currentUser.setProperty("name", object: "Srujan Chalasani" )
-        currentUser.setProperty("events", object: event)
-        backendless.userService.update(currentUser)
-//        let updatedName = updatedUser.getProperty("name")
-//        print( "user has been updated. Name \(updatedName)" )
-        
-        
-        
-        
-        
-        
-        
-//        let dataStore = backendless.data.of(event.ofClass())
-//        
-//        // save object synchronously
-//        var error: Fault?
-//        let result = dataStore.save(event, fault: &error) as? test
-//        if error == nil {
-//            print("Event has been created \(result!.Name)")
-//        }
-//        else {
-//            print("Server reported an error: \(error)")
-//        }
-        
-        
-        
-        
-//        let storeData = backendless.data.of(event.ofClass())
-//        storeData.save(event,
-//            response: {(result : AnyObject!) -> Void in
-//               let obj = result as! Events
-//                print ("Event has been created \(obj.Name)")
-//        },
-//            error: {(fault : Fault!) -> Void in
-//                print ("Server reported an Error: \(fault)")
-//        })
+        Types.tryblock({ () -> Void in
+            let currentUser = self.backendless.userService.currentUser
+           
+            currentUser.setProperty("events", object: event)
+            
+            self.backendless.userService.update(currentUser)
+
+            print("User updated")
+            
+            },
+                       
+                       catchblock: { (exception) -> Void in
+                        print("Server reported an error: \(exception)" )
+        })
         
     }
-    
-    
-//    func updateCurrentUserPropsSync() {
-//        Types.tryblock({ () -> Void in
-//            let currentUser = self.backendless.userService.currentUser
-//            print("User has been logged in (SYNC): \(currentUser)")
-//            let properties = [
-//                "name" : "Agent 007"
-//            ]
-//            currentUser.updateProperties( properties )
-//            let updatedUser = self.backendless.userService.update(currentUser)
-//            print("User updated (SYNC): \(updatedUser)")
-//            },
-//                       catchblock: { (exception) -> Void in
-//                        print("Server reported an error: \(exception)" )
-//        })
-//    }
     
    
     @IBAction func selectImage(sender: AnyObject) {

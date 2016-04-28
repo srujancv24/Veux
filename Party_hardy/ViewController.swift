@@ -26,10 +26,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         UserPassword.delegate=self
         
         backendless.initApp(APP_ID, secret:SECRET_KEY, version:VERSION_NUM)
-        
-       
-        
         super.viewDidLoad()
+        
+        self.validUserToken()
         
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -48,35 +47,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
             permissions: ["public_profile", "email", "user_friends"],
             response: {(result : NSNumber!) -> () in
                 print ("Result: \(result)")
-              self.backendless.userService.setStayLoggedIn( true )
-                // self.SegueForLoggedInUser()
-               self.performSegueWithIdentifier("Login", sender: self)
             },
             error: { (fault : Fault!) -> () in
                 print("Server reported an error: \(fault)")
                 
         })
     }
-//
-//        func validUserToken() {
-//            backendless.userService.isValidUserToken(
-//                { ( result : AnyObject!) -> () in
-//                    print("isValidUserToken (ASYNC): \(result.boolValue)")
-//                 
-//                },
-//                error: { ( fault : Fault!) -> () in
-//                    print("Server reported an error (ASYNC): \(fault)")
-//                    
-//                }
-//            )
-//        }
-//        
-//        
-//        func SegueForLoggedInUser (){
-//              self.validUserToken()
-//            self.performSegueWithIdentifier("event", sender: self)
-//            
-//        }
+
     
     @IBAction func loginButton(sender: AnyObject) {
         
@@ -84,14 +61,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
             print("This is the username text", UserEmail.text)
             print("This is the password text", UserPassword.text)
             
-            
             backendless.userService.login(
                 UserEmail.text, password:UserPassword.text,
                 response: { ( user : BackendlessUser!) -> () in
-                    print("User has been logged in (ASYNC): \(user)")
+                    print("User has been logged in")
                     self.backendless.userService.setStayLoggedIn( true )
                    self.performSegueWithIdentifier("Login", sender: self)
-                   // self.performSegueWithIdentifier("user", sender: self)
 
                 },
                 error: { ( fault : Fault!) -> () in
@@ -200,6 +175,25 @@ class ViewController: UIViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    func validUserToken() {
+        backendless.userService.isValidUserToken(
+            { ( result : AnyObject!) -> () in
+                print("isValidUserToken (ASYNC): \(result.boolValue)")
+                self.backendless.userService.setStayLoggedIn( true )
+                self .SegueForLoggedInUser()
+            },
+            error: { ( fault : Fault!) -> () in
+                print("Server reported an error (ASYNC): \(fault)")
+            }
+        )
+    }
+    func SegueForLoggedInUser (){
+        self.performSegueWithIdentifier("Login", sender: self)
+        
+    }
+
 
 
 }

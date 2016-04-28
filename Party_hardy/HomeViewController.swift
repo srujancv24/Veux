@@ -8,36 +8,47 @@
 
 import Foundation
 
+
 class HomeViewController: UITableViewController {
     
 
     var ev:[test]=[]
+    var email:String?
     
     var backendless = Backendless.sharedInstance()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.reloadData()
         self.fetchData()
        
     }
+    @IBAction func UProfile(sender: UIButton) {
+        
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        
+    }
+       // viewDidLoad()
+    
     
     func fetchData(){
-    
+
+        
         let dataStore = backendless.data.of(test.ofClass())
         var error: Fault?
         
-    
         let result = dataStore.findFault(&error)
         
         if error == nil {
             self.ev.appendContentsOf(result.data as! [test]!)
-            let contacts = result.getCurrentPage()
-            for obj in contacts as! [test]{
-                //print("\(obj.Image)")
-               
-                
-            }
+            
+//            let contacts = result.getCurrentPage()
+//            for obj in contacts as! [test]{
+//                //print("\(obj.Image)")
+//               
+//            }
         }
             
         else {
@@ -57,11 +68,9 @@ class HomeViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("EventCell", forIndexPath: indexPath)
         as! HomeCell
         
-        
-        
         cell.bindData(self.ev[indexPath.row])
-        
-        
+        print(ev[indexPath.row].UEmail)
+
         return cell
     }
     
@@ -70,6 +79,7 @@ class HomeViewController: UITableViewController {
         
         return ev.count
     }
+    
     
     @IBAction func mapLoad(sender: AnyObject) {
         
@@ -108,6 +118,29 @@ class HomeViewController: UITableViewController {
         alert.addAction(appleMaps)
         
         self.presentViewController(alert, animated: true, completion: nil)
+    
+    }
+    
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        if (segue.identifier == "Uprofile") {
+            
+            let button = sender as! UIButton
+            let view = button.superview!
+            let cell = view.superview as! HomeCell
+            
+            let indexPath = tableView.indexPathForCell(cell)
+            email = ev[indexPath!.row].UEmail
+            
+    
+            let svc = segue.destinationViewController as! OtherProfileViewController;
+            
+            svc.email = email
+            
+            
+            
+        }
     }
  
     
