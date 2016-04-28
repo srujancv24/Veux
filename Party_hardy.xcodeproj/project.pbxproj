@@ -37,10 +37,7 @@
 		238C64341CB8EA58001789A8 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238C64331CB8EA58001789A8 /* UserProfileViewController.swift */; };
 		238C64361CB9B805001789A8 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238C64351CB9B805001789A8 /* EditProfileViewController.swift */; };
 		238DB1121CD041AD00183F14 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238DB1111CD041AD00183F14 /* SearchCell.swift */; };
-		238DB1141CD050FF00183F14 /* Candy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238DB1131CD050FF00183F14 /* Candy.swift */; };
 		2395478A1CCD8CA700C8C0A8 /* Emails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239547891CCD8CA700C8C0A8 /* Emails.swift */; };
-		23CEFDC91CD2719900223FAD /* SearchBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CEFDC81CD2719900223FAD /* SearchBarViewController.swift */; };
-		23CEFDCB1CD2767500223FAD /* SearchBarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CEFDCA1CD2767500223FAD /* SearchBarCell.swift */; };
 		23CF8F911C8ADC310083344F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CF8F901C8ADC310083344F /* HomeViewController.swift */; };
 		23CF8F931C8ADC5C0083344F /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CF8F921C8ADC5C0083344F /* EventViewController.swift */; };
 		23EA13301CCA32CC00D882FB /* OtherProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EA132F1CCA32CC00D882FB /* OtherProfileViewController.swift */; };
@@ -104,10 +101,7 @@
 		238C64331CB8EA58001789A8 /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		238C64351CB9B805001789A8 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		238DB1111CD041AD00183F14 /* SearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
-		238DB1131CD050FF00183F14 /* Candy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Candy.swift; sourceTree = "<group>"; };
 		239547891CCD8CA700C8C0A8 /* Emails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Emails.swift; sourceTree = "<group>"; };
-		23CEFDC81CD2719900223FAD /* SearchBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarViewController.swift; sourceTree = "<group>"; };
-		23CEFDCA1CD2767500223FAD /* SearchBarCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarCell.swift; sourceTree = "<group>"; };
 		23CF8F901C8ADC310083344F /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		23CF8F921C8ADC5C0083344F /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		23EA132F1CCA32CC00D882FB /* OtherProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherProfileViewController.swift; sourceTree = "<group>"; };
@@ -252,11 +246,8 @@
 				23CF8F901C8ADC310083344F /* HomeViewController.swift */,
 				2342200A1CBEFF3C001BF5B8 /* SearchViewController.swift */,
 				902F82E51C937C400010571C /* HomeCell.swift */,
-				238DB1131CD050FF00183F14 /* Candy.swift */,
 				238DB1111CD041AD00183F14 /* SearchCell.swift */,
-				23CEFDCA1CD2767500223FAD /* SearchBarCell.swift */,
 				23CF8F921C8ADC5C0083344F /* EventViewController.swift */,
-				23CEFDC81CD2719900223FAD /* SearchBarViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -479,8 +470,6 @@
 				23423F741C7DD3BC00FA4EE8 /* ViewController.swift in Sources */,
 				23423FA11C7DD45600FA4EE8 /* Header.m in Sources */,
 				234ACCC31CC02EE100F1B2BB /* Users.swift in Sources */,
-				23CEFDC91CD2719900223FAD /* SearchBarViewController.swift in Sources */,
-				23CEFDCB1CD2767500223FAD /* SearchBarCell.swift in Sources */,
 				902F82E61C937C400010571C /* HomeCell.swift in Sources */,
 				23CF8F931C8ADC5C0083344F /* EventViewController.swift in Sources */,
 				237708EB1CCB5B5D00D93AE3 /* UserGroup.swift in Sources */,
@@ -488,7 +477,6 @@
 				233436541CCEB39200BA92D3 /* UserGroups.swift in Sources */,
 				2342200B1CBEFF3C001BF5B8 /* SearchViewController.swift in Sources */,
 				236EA47C1C7DDCD500105F31 /* SignUpViewController.swift in Sources */,
-				238DB1141CD050FF00183F14 /* Candy.swift in Sources */,
 				23423F721C7DD3BC00FA4EE8 /* AppDelegate.swift in Sources */,
 				23CF8F911C8ADC310083344F /* HomeViewController.swift in Sources */,
 				233FD0951CD1BD7600CCAD7F /* MyImageCache.swift in Sources */,

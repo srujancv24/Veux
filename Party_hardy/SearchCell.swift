@@ -19,6 +19,7 @@ class SearchCell: UITableViewCell {
     @IBOutlet weak var UName: UIButton!
     @IBOutlet weak var address: UIButton!
     
+     var imageUrl: NSURL!
     
     func bindData(test1: test) {
         
@@ -29,24 +30,35 @@ class SearchCell: UITableViewCell {
         self.address.setTitle(test1.Address! as String, forState: .Normal)
         
         
-//        if(test1.Image != nil){
-//            
-//            let url = NSURL(string: test1.Image!)
-//            
-//            let dataimage = NSData(contentsOfURL: url!)
-//            
-//            self.EventImage.image = UIImage(data: dataimage!)
-//            
-//        }
-//            
-//        else
-//        {
-//            let img = UIImage(named: "imageNotAvailable.jpg")
-//            let imgData:NSData? = UIImageJPEGRepresentation(img!, 0.0)
-//            self.EventImage.image = UIImage(data: imgData!)
-//        }
-        
-        
+        if(test1.Image != nil){
+            let data = test1
+            let url = NSURL(string: data.Image!)
+            imageUrl = url // For recycled cells' late image loads.
+            if let image = url?.cachedImage {
+                // Cached: set immediately.
+                EventImage.image = image
+                EventImage.alpha = 1
+            } else {
+                // Not cached, so load then fade it in.
+                EventImage.alpha = 0
+                url!.fetchImage { image in
+                    // Check the cell hasn't recycled while loading.
+                    if self.imageUrl == url {
+                        self.EventImage.image = image
+                        UIView.animateWithDuration(0.3) {
+                            self.EventImage.alpha = 1
+                        }
+                    }
+                }
+            }
+            
+        }
+        else{
+            let img = UIImage(named: "imageNotAvailable.jpg")
+            let imgData:NSData? = UIImageJPEGRepresentation(img!, 0.0)
+            self.EventImage.image = UIImage(data: imgData!)
+            
+        }
         
         
     }
