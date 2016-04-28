@@ -14,5 +14,4 @@ class UserGroups: NSObject {
     var users:[BackendlessUser] = []
     var ownerId: String?
     
-    
 }

@@ -19,6 +19,10 @@ class HomeViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.barTintColor = UIColor.cyanColor()
+//        let logo = UIImage(named: "veuxlogo.png")
+//        let imageView = UIImageView(image:logo)
+//        self.navigationItem.titleView = imageView
         self.fetchData()
        
     }
@@ -70,6 +74,7 @@ class HomeViewController: UITableViewController {
         cell.bindData(self.ev[indexPath.row])
         print(ev[indexPath.row].UEmail)
 
+         
         return cell
     }
     
@@ -137,8 +142,7 @@ class HomeViewController: UITableViewController {
         }
     }
  
-    
-    
-    }
+}
+
 
 

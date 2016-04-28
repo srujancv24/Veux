@@ -12,6 +12,7 @@ class SearchViewController: UITableViewController {
 
     
     var ev:[test]=[]
+    var filteredEv:[test]=[]
     var candies = [Candy]()
     var filteredCandies = [Candy]()
     
@@ -32,7 +33,7 @@ class SearchViewController: UITableViewController {
         searchController.dimsBackgroundDuringPresentation = false
         
         // Setup the Scope Bar
-        searchController.searchBar.scopeButtonTitles = ["All", "Chocolate", "Hard", "Other"]
+        searchController.searchBar.scopeButtonTitles = ["All", "Events", "Name"]
         tableView.tableHeaderView = searchController.searchBar
         
         candies = [
@@ -89,39 +90,46 @@ class SearchViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchController.active && searchController.searchBar.text != "" {
-            return filteredCandies.count
+            print(filteredEv.count)
+            return filteredEv.count
         }
         return 0
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
- //let cell = tableView.dequeueReusableCellWithIdentifier("Ucell", forIndexPath: indexPath)
  
        let cell = tableView.dequeueReusableCellWithIdentifier("Ucell", forIndexPath: indexPath)
             as! SearchCell
         
-       cell.bindData(self.ev[indexPath.row])
-        let candy: Candy
+        
+
         if searchController.active && searchController.searchBar.text != "" {
-            candy = filteredCandies[indexPath.row]
+            cell.bindData(self.ev[indexPath.row])
         } else {
-           // candy = candies[indexPath.row]
+            print(self.filteredEv[indexPath.row].Name)
+          cell.bindData(self.filteredEv[indexPath.row])
             
         }
         
-
-//        }
-        // cell.textLabel!.text = ev[indexPath.row].UEmail
-        
-       // cell.detailTextLabel!.text = candy.category
         return cell
     }
     
     func filterContentForSearchText(searchText: String, scope: String = "All") {
-        filteredCandies = candies.filter({( candy : Candy) -> Bool in
-            let categoryMatch = (scope == "All") || (candy.category == scope)
-            return categoryMatch && candy.name.lowercaseString.containsString(searchText.lowercaseString)
-        })
+//        filteredCandies = candies.filter({( candy : Candy) -> Bool in
+//            let categoryMatch = (scope == "All") || (candy.category == scope)
+//            print(scope)
+//            return categoryMatch && candy.name.lowercaseString.containsString(searchText.lowercaseString)
+        
+    
+        filteredEv = ev.filter({(event1:test) ->Bool in
+            
+            let match  = (scope == "All")
+            
+            return match && event1.Name!.lowercaseString.containsString(searchText.lowercaseString)
+        
+                })
+        
+        
         tableView.reloadData()
     }
     
@@ -149,12 +157,11 @@ extension SearchViewController: UISearchBarDelegate {
     
     func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         filterContentForSearchText(searchBar.text!, scope: searchBar.scopeButtonTitles![selectedScope])
+       
         
     }
 }
     
-
-
 extension SearchViewController: UISearchResultsUpdating {
    
     func updateSearchResultsForSearchController(searchController: UISearchController) {

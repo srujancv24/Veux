@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		233436541CCEB39200BA92D3 /* UserGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233436531CCEB39200BA92D3 /* UserGroups.swift */; };
+		233FD0951CD1BD7600CCAD7F /* MyImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233FD0941CD1BD7600CCAD7F /* MyImageCache.swift */; };
+		233FD09A1CD1C11200CCAD7F /* green.png in Resources */ = {isa = PBXBuildFile; fileRef = 233FD0961CD1C11200CCAD7F /* green.png */; };
+		233FD09B1CD1C11200CCAD7F /* red.png in Resources */ = {isa = PBXBuildFile; fileRef = 233FD0971CD1C11200CCAD7F /* red.png */; };
+		233FD09C1CD1C11200CCAD7F /* thumbdwn.png in Resources */ = {isa = PBXBuildFile; fileRef = 233FD0981CD1C11200CCAD7F /* thumbdwn.png */; };
+		233FD09D1CD1C11200CCAD7F /* thumbup.png in Resources */ = {isa = PBXBuildFile; fileRef = 233FD0991CD1C11200CCAD7F /* thumbup.png */; };
 		233FF1CD1CB39A58008126D5 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233FF1CC1CB39A58008126D5 /* test.swift */; };
 		2342200B1CBEFF3C001BF5B8 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2342200A1CBEFF3C001BF5B8 /* SearchViewController.swift */; };
 		23423F721C7DD3BC00FA4EE8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23423F711C7DD3BC00FA4EE8 /* AppDelegate.swift */; };
@@ -60,6 +65,11 @@
 
 /* Begin PBXFileReference section */
 		233436531CCEB39200BA92D3 /* UserGroups.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserGroups.swift; sourceTree = "<group>"; };
+		233FD0941CD1BD7600CCAD7F /* MyImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyImageCache.swift; path = ../MyImageCache.swift; sourceTree = "<group>"; };
+		233FD0961CD1C11200CCAD7F /* green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green.png; sourceTree = "<group>"; };
+		233FD0971CD1C11200CCAD7F /* red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red.png; sourceTree = "<group>"; };
+		233FD0981CD1C11200CCAD7F /* thumbdwn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumbdwn.png; sourceTree = "<group>"; };
+		233FD0991CD1C11200CCAD7F /* thumbup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumbup.png; sourceTree = "<group>"; };
 		233FF1CC1CB39A58008126D5 /* test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 		2342200A1CBEFF3C001BF5B8 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		23423F6E1C7DD3BC00FA4EE8 /* Party_hardy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Party_hardy.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -188,6 +198,10 @@
 		237708E91CCB45ED00D93AE3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				233FD0961CD1C11200CCAD7F /* green.png */,
+				233FD0971CD1C11200CCAD7F /* red.png */,
+				233FD0981CD1C11200CCAD7F /* thumbdwn.png */,
+				233FD0991CD1C11200CCAD7F /* thumbup.png */,
 				236EA4771C7DD85400105F31 /* red-plastic-cup-clipart-Red-Solo-Cup copy.png */,
 				236EA4781C7DD85400105F31 /* LoginWithFacebook copy.png */,
 				236AD3BC1CAE1A2A00FE7C9E /* veuxload.png */,
@@ -215,6 +229,7 @@
 			children = (
 				237708EA1CCB5B5D00D93AE3 /* UserGroup.swift */,
 				233436531CCEB39200BA92D3 /* UserGroups.swift */,
+				233FD0941CD1BD7600CCAD7F /* MyImageCache.swift */,
 				234ACCC21CC02EE100F1B2BB /* Users.swift */,
 				233FF1CC1CB39A58008126D5 /* test.swift */,
 				239547891CCD8CA700C8C0A8 /* Emails.swift */,
@@ -369,13 +384,17 @@
 				23423F7C1C7DD3BC00FA4EE8 /* LaunchScreen.storyboard in Resources */,
 				236AD3BE1CAE1A2A00FE7C9E /* veuxload.png in Resources */,
 				234AB1E51CBC2A3B00470F39 /* home-50.png in Resources */,
+				233FD09B1CD1C11200CCAD7F /* red.png in Resources */,
 				236EA47A1C7DD85400105F31 /* LoginWithFacebook copy.png in Resources */,
 				234AB1E31CBC2A3B00470F39 /* contacts-50.png in Resources */,
 				23423F791C7DD3BC00FA4EE8 /* Assets.xcassets in Resources */,
 				237708E81CCB45CD00D93AE3 /* imageNotAvailable.jpg in Resources */,
 				236AD3BF1CAE1A2A00FE7C9E /* veuxlogo.png in Resources */,
+				233FD09C1CD1C11200CCAD7F /* thumbdwn.png in Resources */,
+				233FD09A1CD1C11200CCAD7F /* green.png in Resources */,
 				23423F771C7DD3BC00FA4EE8 /* Main.storyboard in Resources */,
 				236EA4791C7DD85400105F31 /* red-plastic-cup-clipart-Red-Solo-Cup copy.png in Resources */,
+				233FD09D1CD1C11200CCAD7F /* thumbup.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -464,6 +483,7 @@
 				238DB1141CD050FF00183F14 /* Candy.swift in Sources */,
 				23423F721C7DD3BC00FA4EE8 /* AppDelegate.swift in Sources */,
 				23CF8F911C8ADC310083344F /* HomeViewController.swift in Sources */,
+				233FD0951CD1BD7600CCAD7F /* MyImageCache.swift in Sources */,
 				238DB1121CD041AD00183F14 /* SearchCell.swift in Sources */,
 				233FF1CD1CB39A58008126D5 /* test.swift in Sources */,
 			);
@@ -608,6 +628,7 @@
 			baseConfigurationReference = 2C797BE13A90103DCDB5C3FE /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -626,6 +647,7 @@
 			baseConfigurationReference = EED064A6CF430A5CD7EC24C3 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
