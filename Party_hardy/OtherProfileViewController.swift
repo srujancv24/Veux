@@ -67,9 +67,8 @@ class OtherProfileViewController: UIViewController  {
         self.userName.text = name
         self.following.text = follows.count().description
         self.events.text = events.count().description
-       
-            
-            let url = NSURL(string: image.description)
+        
+        let url = NSURL(string: image.description)
             
         if url?.description != nil {
             let dataimage = NSData(contentsOfURL: url!)
@@ -77,14 +76,12 @@ class OtherProfileViewController: UIViewController  {
             self.image.image = UIImage(data: dataimage!)
         }
             
-            
         else
         {
             let img = UIImage(named: "imageNotAvailable.jpg")
             let imgData:NSData? = UIImageJPEGRepresentation(img!, 0.0)
             self.image.image = UIImage(data: imgData!)
         }
-
         
         print(events)
         
@@ -97,15 +94,12 @@ class OtherProfileViewController: UIViewController  {
         print("False")
         }
         
-        
         //Fetch email of users(following)
         let coll:BackendlessCollection = backendless.data.of(Emails.ofClass()).find(dataQuery)
         Uemail = coll.getCurrentPage().first as! Emails;
         //print(Uemail.email)
                
     }
-    
-
     
     @IBAction func Follow(sender: UIButton) {
         
@@ -148,18 +142,15 @@ class OtherProfileViewController: UIViewController  {
                     var error: Fault?
                     
                     let result = backendless.data.update(theGroup, error: &error) as? UserGroups
-            
                     
                     if error == nil {
                         
                         print("Member havs been added: \(result)")
-                        
                     }
                     
                     else{
                         print("Server reported an error: \(error)")
                     }
-                
             }
             
         }

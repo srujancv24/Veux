@@ -91,16 +91,16 @@ class SearchViewController: UITableViewController {
         if searchController.active && searchController.searchBar.text != "" {
             return filteredCandies.count
         }
-        return ev.count
+        return 0
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCellWithIdentifier("Ucell", forIndexPath: indexPath)
+ //let cell = tableView.dequeueReusableCellWithIdentifier("Ucell", forIndexPath: indexPath)
  
-        let cell = tableView.dequeueReusableCellWithIdentifier("Ucell", forIndexPath: indexPath)
+       let cell = tableView.dequeueReusableCellWithIdentifier("Ucell", forIndexPath: indexPath)
             as! SearchCell
         
-        cell.bindData(self.ev[indexPath.row])
+       cell.bindData(self.ev[indexPath.row])
         let candy: Candy
         if searchController.active && searchController.searchBar.text != "" {
             candy = filteredCandies[indexPath.row]
@@ -108,7 +108,10 @@ class SearchViewController: UITableViewController {
            // candy = candies[indexPath.row]
             
         }
-//        cell.textLabel!.text = ev[indexPath.row].UEmail
+        
+
+//        }
+        // cell.textLabel!.text = ev[indexPath.row].UEmail
         
        // cell.detailTextLabel!.text = candy.category
         return cell

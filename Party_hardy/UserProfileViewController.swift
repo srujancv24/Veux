@@ -22,8 +22,12 @@ class UserProfileViewController: UIViewController {
     
     @IBOutlet weak var Image: UIImageView!
     @IBOutlet weak var Name: UILabel!
+    @IBOutlet weak var followers: UILabel!
+    @IBOutlet weak var following: UILabel!
+    @IBOutlet weak var address: UILabel!
     
     var user:String?
+    var userObject: BackendlessUser?
     
     
     override func viewDidLoad() {
@@ -35,6 +39,8 @@ class UserProfileViewController: UIViewController {
         super.viewDidLoad()
         
         fetchData()
+        
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -54,10 +60,11 @@ class UserProfileViewController: UIViewController {
         let collection:BackendlessCollection = backendless.data.of(BackendlessUser.ofClass()).find(dataQuery)
         // take the first object from the collection, since there is always going to be just one
         
-        let userObject = collection.getCurrentPage().first as! BackendlessUser;
         
-        print(userObject.getProperty("name"))
-        Name.text = userObject.getProperty("name").string
+        userObject = collection.getCurrentPage().first as? BackendlessUser;
+        
+        print(userObject!.getProperty("name"))
+        Name.text = userObject!.getProperty("name").string
        
         
     }
