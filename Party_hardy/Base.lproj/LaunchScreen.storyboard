@@ -24,16 +24,36 @@
                         </subviews>
                         <color key="backgroundColor" red="0.11808223322834012" green="0.530810818728361" blue="0.71080345089861385" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="Lw7-WE-vj4" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Sba-a9-VV9">
+                                <variation key="heightClass=regular-widthClass=compact" constant="1"/>
+                            </constraint>
                             <constraint firstAttribute="trailingMargin" secondItem="Lw7-WE-vj4" secondAttribute="trailing" constant="87" id="VX4-Tf-lYb"/>
                             <constraint firstItem="Lw7-WE-vj4" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="kgi-Ib-wf0"/>
                             <constraint firstItem="Lw7-WE-vj4" firstAttribute="bottom" secondItem="xb3-aO-Qok" secondAttribute="top" id="nKO-Up-LYN"/>
                             <constraint firstItem="Lw7-WE-vj4" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="87" id="uBT-5x-ZPE"/>
+                            <constraint firstItem="Lw7-WE-vj4" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="y7v-tj-hNd"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Sba-a9-VV9"/>
+                                <exclude reference="y7v-tj-hNd"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="Sba-a9-VV9"/>
+                                <exclude reference="VX4-Tf-lYb"/>
+                                <exclude reference="kgi-Ib-wf0"/>
+                                <exclude reference="nKO-Up-LYN"/>
+                                <exclude reference="uBT-5x-ZPE"/>
+                                <include reference="y7v-tj-hNd"/>
+                            </mask>
+                        </variation>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="158" y="-132"/>
+            <point key="canvasLocation" x="157.5" y="-132"/>
         </scene>
     </scenes>
     <resources>
