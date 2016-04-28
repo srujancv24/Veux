@@ -64,7 +64,6 @@ class EditProfileViewController: UIViewController , UIImagePickerControllerDeleg
                     print("\(fault)")
                 })
             
-            
         }
         else
         {
