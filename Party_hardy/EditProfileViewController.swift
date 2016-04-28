@@ -19,3 +19,8 @@ class EditProfileViewController: UIViewController {
     }
 
 }
+
+//let currentUser = backendless.userService.currentUser
+//currentUser.setProperty("name", object: "Srujan Chalasani" )
+//currentUser.setProperty("events", object: event)
+//backendless.userService.update(currentUser)
