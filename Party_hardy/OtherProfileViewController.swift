@@ -65,8 +65,8 @@ class OtherProfileViewController: UIViewController  {
         
         print(image.description)
         self.userName.text = name
-        self.following.text = follows.count().description
-        self.events.text = events.count().description
+        self.following.text = follows.count.description
+        self.events.text = events.count.description
        
             
             let url = NSURL(string: image.description)
