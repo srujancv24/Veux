@@ -109,6 +109,16 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
 
             print("User updated")
             
+            //Create Success Alert
+            let alertView = UIAlertController(title: "Success", message: "Event has been Created", preferredStyle: .Alert)
+            
+            let Ok = UIAlertAction (title: "Ok", style: .Destructive ) { alertAction in
+                
+                self.performSegueWithIdentifier("eventCreated", sender: self)
+            }
+            alertView.addAction(Ok)
+            self.presentViewController(alertView, animated: true, completion: nil)
+            
             },
                        
                        catchblock: { (exception) -> Void in

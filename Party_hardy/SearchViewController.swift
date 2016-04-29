@@ -20,6 +20,7 @@ class SearchViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         searchController = UISearchController(searchResultsController: nil)
         // Setup the Search Controller
         searchController.searchResultsUpdater = self
@@ -103,24 +104,6 @@ class SearchViewController: UITableViewController {
             }
             self.tableView.reloadData()
     }
-    
-    // MARK: - Segues
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        if segue.identifier == "showDetail" {
-//            if let indexPath = tableView.indexPathForSelectedRow {
-//                let candy: Candy
-//                if searchController.active && searchController.searchBar.text != "" {
-//                    candy = filteredCandies[indexPath.row]
-//                } else {
-//                    candy = candies[indexPath.row]
-//                }
-//                let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController
-//                controller.detailCandy = candy
-//                controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem()
-//                controller.navigationItem.leftItemsSupplementBackButton = true
-//            }
-//        }
-//    }
     
 }
 

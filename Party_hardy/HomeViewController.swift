@@ -52,7 +52,10 @@ class HomeViewController: UITableViewController {
 //                //print("\(obj.Image)")
 //               
 //            }
+             self.tableView.reloadData()
         }
+            
+           
             
         else {
             print("Server reported an error: \(error)")
@@ -74,7 +77,6 @@ class HomeViewController: UITableViewController {
         cell.bindData(self.ev[indexPath.row])
         print(ev[indexPath.row].UEmail)
 
-         
         return cell
     }
     
@@ -87,7 +89,7 @@ class HomeViewController: UITableViewController {
     
     @IBAction func mapLoad(sender: AnyObject) {
         
-        let alert = UIAlertController(title: "Navigate Using", message:nil, preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: "Navigate Using", message:nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
         
         let googleMaps = UIAlertAction(title: "Google Maps", style: .Default) { (action) -> Void in
             
@@ -120,6 +122,7 @@ class HomeViewController: UITableViewController {
         
         alert.addAction(googleMaps)
         alert.addAction(appleMaps)
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
         
         self.presentViewController(alert, animated: true, completion: nil)
     
@@ -139,6 +142,19 @@ class HomeViewController: UITableViewController {
             
             svc.email = email
             
+        }
+        
+        if (segue.identifier == "Detail") {
+            
+            if let indexPath = tableView.indexPathForSelectedRow {
+            
+            email = ev[indexPath.row].UEmail
+
+            
+            let dvc = segue.destinationViewController as! DetailViewController;
+            
+                dvc.event = ev[indexPath.row]
+            }
         }
     }
  

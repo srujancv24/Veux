@@ -11,8 +11,6 @@ import Foundation
 
 
 class SearchCell: UITableViewCell {
-
-    
    
     @IBOutlet weak var EventImage: UIImageView!
     @IBOutlet weak var Eventtitle: UILabel!
