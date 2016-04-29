@@ -27,7 +27,7 @@ class OtherProfileViewController: UIViewController  {
     var name:String!
     var objectId:String!
     var userObject:BackendlessUser!
-    var followingCount:Int!
+    var followersCount:Int!
     
     override func viewDidLoad() {
         
@@ -36,7 +36,8 @@ class OtherProfileViewController: UIViewController  {
         backendless.initApp(APP_ID, secret:SECRET_KEY, version:VERSION_NUM)
         self.backendless.userService.getPersistentUser()
         fetchData()
-    
+        followers()
+        Following()
     }
     
     override func didReceiveMemoryWarning() {
@@ -57,8 +58,6 @@ class OtherProfileViewController: UIViewController  {
         // take the first object from the collection, since there is always going to be just one
         //Fetch User details
         userObject = collection.getCurrentPage().first as! BackendlessUser;
-        
-        
         
         //Fetch Event count
         name = userObject.getProperty("name").description
@@ -96,6 +95,10 @@ class OtherProfileViewController: UIViewController  {
             self.image.image = UIImage(data: imgData!)
         }
         
+        if userObject.email == backendless.userService.currentUser.email {
+            follow.hidden = true
+        }
+        
     }
     
     @IBAction func Follow(sender: UIButton) {
@@ -117,10 +120,12 @@ class OtherProfileViewController: UIViewController  {
                 
                 var error: Fault?
                 let result = backendless.data.update(theGroup, error: &error ) as? UserGroups
-                followingCount = (result?.users.count)!
+                followersCount = (result?.users.count)!
                 
                 if error == nil {
                     print("Member has been Added")
+                    followedBy.text = followersCount.description
+                    follow.hidden = true
                 }
                 
                 else{
@@ -134,4 +139,71 @@ class OtherProfileViewController: UIViewController  {
         }
 
             }
+    
+    
+    func Following(){
+        
+        let dataQuery = BackendlessDataQuery()
+        
+        dataQuery.whereClause = "email = '\(email)'"
+        
+       // dataQuery.whereClause = "users.email = \'\(email)\'"
+        
+        
+        var error: Fault?
+        let bc = backendless.data.of(UserGroups.ofClass()).find(dataQuery, fault: &error)
+        if error == nil {
+            
+            let result = bc.getCurrentPage()
+            if result.count == 0 {
+                following.text = "0"
+            }
+            else{
+            for theGroup in result as! [UserGroups]{
+                let followin = theGroup.users.count
+                print(followin)
+                following.text = followin.description
+            }
+            
+            }
+            
+        }
+        else {
+            print("Server reported an error: \(error)")
+        }
+    }
+    
+    func followers(){
+        let dataQuery = BackendlessDataQuery()
+        
+        dataQuery.whereClause = "email = '\(backendless.userService.currentUser.email)'"
+        
+        // dataQuery.whereClause = "users.email = \'\(email)\'"
+        
+        
+        var error: Fault?
+        let bc = backendless.data.of(UserGroups.ofClass()).find(dataQuery, fault: &error)
+        if error == nil {
+            
+            let result = bc.getCurrentPage()
+            if result.count == 0 {
+                following.text = "0"
+            }
+            else{
+                for theGroup in result as! [UserGroups]{
+                    let followers = theGroup.users.count
+                    print(followers)
+                    followedBy.text = followers.description
+                }
+                
+            }
+            
+        }
+        else {
+            print("Server reported an error: \(error)")
+        }
+
+        
+        
+    }
 }
