@@ -954,10 +954,6 @@
                                                 <segue destination="fpt-ro-Jii" kind="show" identifier="Uprofile" id="Pq2-8I-f3T"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="azo-Rq-cyO">
-                                            <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                            <state key="normal" image="thumbdwn.png"/>
-                                        </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HK3-W0-EGa">
                                             <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                             <constraints>
@@ -973,6 +969,13 @@
                                                 <mask key="constraints">
                                                     <include reference="E3T-iC-jdD"/>
                                                 </mask>
+                                            </variation>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="azo-Rq-cyO">
+                                            <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                            <state key="normal" image="thumbdwn.png"/>
+                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                <rect key="frame" x="334" y="12" width="39" height="46"/>
                                             </variation>
                                         </button>
                                     </subviews>
@@ -1030,8 +1033,8 @@
                                         <mask key="subviews">
                                             <exclude reference="1ob-yH-eCy"/>
                                             <exclude reference="JMC-G9-FcL"/>
-                                            <exclude reference="azo-Rq-cyO"/>
                                             <exclude reference="HK3-W0-EGa"/>
+                                            <exclude reference="azo-Rq-cyO"/>
                                         </mask>
                                         <mask key="constraints">
                                             <exclude reference="8rk-9K-MEM"/>
@@ -1064,8 +1067,8 @@
                                         <mask key="subviews">
                                             <include reference="1ob-yH-eCy"/>
                                             <include reference="JMC-G9-FcL"/>
-                                            <include reference="azo-Rq-cyO"/>
                                             <include reference="HK3-W0-EGa"/>
+                                            <include reference="azo-Rq-cyO"/>
                                         </mask>
                                         <mask key="constraints">
                                             <include reference="8rk-9K-MEM"/>
@@ -1127,6 +1130,8 @@
                                     <outlet property="EventImage" destination="U4Z-UX-G4M" id="y4u-6Z-HSl"/>
                                     <outlet property="EventName" destination="cPr-JV-rlH" id="ehq-D7-Hpu"/>
                                     <outlet property="UName" destination="JMC-G9-FcL" id="71E-N2-r2h"/>
+                                    <outlet property="disLike" destination="azo-Rq-cyO" id="OzY-yw-E7b"/>
+                                    <outlet property="like" destination="HK3-W0-EGa" id="Rc9-09-DFg"/>
                                     <segue destination="dq5-Qa-SN0" kind="showDetail" identifier="Detail" action="showViewController:sender:" id="l6m-i5-H71"/>
                                 </connections>
                             </tableViewCell>
@@ -2095,7 +2100,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GZd-HQ-dYN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5632.5" y="330"/>
+            <point key="canvasLocation" x="5605" y="490"/>
         </scene>
         <!--Edit Profile-->
         <scene sceneID="rlY-7f-sR3">
@@ -2908,7 +2913,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yEP-1F-jbV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4714.5" y="330"/>
+            <point key="canvasLocation" x="4714" y="548"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="i0V-Bo-977">

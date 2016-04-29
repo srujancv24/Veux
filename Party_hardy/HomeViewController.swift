@@ -25,17 +25,12 @@ class HomeViewController: UITableViewController {
 //        self.navigationItem.titleView = imageView
         self.fetchData()
        
+    
     }
     @IBAction func UProfile(sender: UIButton) {
         
     }
-    
-    override func viewWillAppear(animated: Bool) {
-        
-    }
-       // viewDidLoad()
-    
-    
+  
     func fetchData(){
 
         
@@ -67,21 +62,22 @@ class HomeViewController: UITableViewController {
         return 1
     }
     
-   
-    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("EventCell", forIndexPath: indexPath)
         as! HomeCell
         
         cell.bindData(self.ev[indexPath.row])
-        print(ev[indexPath.row].UEmail)
+        
+        
+        cell.like.addTarget(self, action: #selector(HomeViewController.ButtonClicked(_:)), forControlEvents: .TouchUpInside)
+        
+        cell.disLike.addTarget(self, action: #selector(HomeViewController.ButtonClicked(_:)), forControlEvents: .TouchUpInside)
 
         return cell
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-       
         
         return ev.count
     }
@@ -119,7 +115,6 @@ class HomeViewController: UITableViewController {
             }
         }
         
-        
         alert.addAction(googleMaps)
         alert.addAction(appleMaps)
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
@@ -139,7 +134,6 @@ class HomeViewController: UITableViewController {
             email = ev[indexPath!.row].UEmail
             
             let svc = segue.destinationViewController as! OtherProfileViewController;
-            
             svc.email = email
             
         }
@@ -148,17 +142,31 @@ class HomeViewController: UITableViewController {
             
             if let indexPath = tableView.indexPathForSelectedRow {
             
-            email = ev[indexPath.row].UEmail
-
-            
-            let dvc = segue.destinationViewController as! DetailViewController;
+                let dvc = segue.destinationViewController as! DetailViewController;
             
                 dvc.event = ev[indexPath.row]
             }
         }
     }
- 
+    
+    
+    func ButtonClicked(sender: AnyObject?) {
+        
+        let button = sender as! UIButton
+        let view = button.superview!
+        let cell = view.superview as! HomeCell
+        
+        let indexPath = tableView.indexPathForCell(cell)
+
+        
+        if sender === cell.like {
+           
+        }
+        
+        else if sender === cell.disLike {
+            // do something
+       
+        }
+
+    }
 }
-
-
-

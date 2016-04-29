@@ -33,11 +33,9 @@
 		236EA47A1C7DD85400105F31 /* LoginWithFacebook copy.png in Resources */ = {isa = PBXBuildFile; fileRef = 236EA4781C7DD85400105F31 /* LoginWithFacebook copy.png */; };
 		236EA47C1C7DDCD500105F31 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236EA47B1C7DDCD500105F31 /* SignUpViewController.swift */; };
 		237708E81CCB45CD00D93AE3 /* imageNotAvailable.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 237708E71CCB45CD00D93AE3 /* imageNotAvailable.jpg */; };
-		237708EB1CCB5B5D00D93AE3 /* UserGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237708EA1CCB5B5D00D93AE3 /* UserGroup.swift */; };
 		238C64341CB8EA58001789A8 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238C64331CB8EA58001789A8 /* UserProfileViewController.swift */; };
 		238C64361CB9B805001789A8 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238C64351CB9B805001789A8 /* EditProfileViewController.swift */; };
 		238DB1121CD041AD00183F14 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238DB1111CD041AD00183F14 /* SearchCell.swift */; };
-		2395478A1CCD8CA700C8C0A8 /* Emails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239547891CCD8CA700C8C0A8 /* Emails.swift */; };
 		23CEFDCD1CD2C97900223FAD /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CEFDCC1CD2C97900223FAD /* DetailViewController.swift */; };
 		23CF8F911C8ADC310083344F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CF8F901C8ADC310083344F /* HomeViewController.swift */; };
 		23CF8F931C8ADC5C0083344F /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CF8F921C8ADC5C0083344F /* EventViewController.swift */; };
@@ -98,11 +96,9 @@
 		236EA4781C7DD85400105F31 /* LoginWithFacebook copy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LoginWithFacebook copy.png"; sourceTree = "<group>"; };
 		236EA47B1C7DDCD500105F31 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		237708E71CCB45CD00D93AE3 /* imageNotAvailable.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = imageNotAvailable.jpg; sourceTree = "<group>"; };
-		237708EA1CCB5B5D00D93AE3 /* UserGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserGroup.swift; sourceTree = "<group>"; };
 		238C64331CB8EA58001789A8 /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		238C64351CB9B805001789A8 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		238DB1111CD041AD00183F14 /* SearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
-		239547891CCD8CA700C8C0A8 /* Emails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Emails.swift; sourceTree = "<group>"; };
 		23CEFDCC1CD2C97900223FAD /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		23CF8F901C8ADC310083344F /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		23CF8F921C8ADC5C0083344F /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
@@ -227,12 +223,10 @@
 		237708ED1CCB5BAE00D93AE3 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				237708EA1CCB5B5D00D93AE3 /* UserGroup.swift */,
 				233436531CCEB39200BA92D3 /* UserGroups.swift */,
 				233FD0941CD1BD7600CCAD7F /* MyImageCache.swift */,
 				234ACCC21CC02EE100F1B2BB /* Users.swift */,
 				233FF1CC1CB39A58008126D5 /* test.swift */,
-				239547891CCD8CA700C8C0A8 /* Emails.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -475,8 +469,6 @@
 				234ACCC31CC02EE100F1B2BB /* Users.swift in Sources */,
 				902F82E61C937C400010571C /* HomeCell.swift in Sources */,
 				23CF8F931C8ADC5C0083344F /* EventViewController.swift in Sources */,
-				237708EB1CCB5B5D00D93AE3 /* UserGroup.swift in Sources */,
-				2395478A1CCD8CA700C8C0A8 /* Emails.swift in Sources */,
 				23CEFDCD1CD2C97900223FAD /* DetailViewController.swift in Sources */,
 				233436541CCEB39200BA92D3 /* UserGroups.swift in Sources */,
 				2342200B1CBEFF3C001BF5B8 /* SearchViewController.swift in Sources */,
