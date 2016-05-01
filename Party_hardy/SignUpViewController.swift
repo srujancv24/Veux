@@ -16,6 +16,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     var backendless = Backendless.sharedInstance()
     
+    let userGroup = UserGroups()
+    
     override func viewDidLoad() {
         
         let APP_ID = "B0AF361C-8AA4-CD18-FF63-677A5ACB5200"
@@ -119,6 +121,26 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 //If there is an error we want to print that!
                 print("Server reported an error: \(exception)" )
         })
-    }
+        
+        
+        let dataStore = backendless.data.of(UserGroups.ofClass())
+        
+        userGroup.email = UEmail.text
+        
+        dataStore.save(
+            userGroup,
+            response: { (result: AnyObject!) -> Void in
+                let obj = result as! UserGroups
+                print("Contact has been saved")
+            },
+            error: { (fault: Fault!) -> Void in
+                print("fServer reported an error: \(fault)")
+        })
+        
+            }
+
     
+
+
+
 }

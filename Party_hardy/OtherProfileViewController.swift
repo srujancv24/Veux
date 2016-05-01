@@ -8,13 +8,17 @@
 
 import Foundation
 
-class OtherProfileViewController: UIViewController  {
+class OtherProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
     
     let APP_ID = "B0AF361C-8AA4-CD18-FF63-677A5ACB5200"
     let SECRET_KEY = "C5DB14C3-420E-500E-FFB2-0AABE09E8F00"
     let VERSION_NUM = "v1"
     
+
+  
+    @IBOutlet weak var caption: UILabel!
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var follow: UIButton!
@@ -26,8 +30,10 @@ class OtherProfileViewController: UIViewController  {
     var email:String!
     var name:String!
     var objectId:String!
-    var Uemail = Emails()
     var userObject:BackendlessUser!
+    var followersCount:Int!
+    
+    var filteredEv:[test]=[]
     
     override func viewDidLoad() {
         
@@ -35,9 +41,64 @@ class OtherProfileViewController: UIViewController  {
         
         backendless.initApp(APP_ID, secret:SECRET_KEY, version:VERSION_NUM)
         self.backendless.userService.getPersistentUser()
+        tableView.delegate = self
+        tableView.dataSource = self
+         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        
         fetchData()
-    
+        followers()
+        Following()
+        fetchTableData()
     }
+    
+    func fetchTableData(){
+        let dataQuery = BackendlessDataQuery()
+            
+        let whereClause = "UEmail = '\(email)'"
+        dataQuery.whereClause = whereClause
+            
+    
+        var error: Fault?
+        let bc = backendless.data.of(test.ofClass()).find(dataQuery, fault: &error)
+        if error == nil {
+            self.filteredEv.removeAll()
+            self.filteredEv.appendContentsOf(bc.data as! [test]!)
+            
+        }
+        else {
+            print("Server reported an error: \(error)")
+        }
+        self.tableView.reloadData()
+    }
+
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+        
+    {
+        if filteredEv.count == 0 {
+            return 0
+        }
+        else{
+        return filteredEv.count
+        }
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
+       
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier("UserCell", forIndexPath: indexPath)
+            as! userCell
+        
+       // cell.textLabel.text = self.groupList[indexPath.row]
+        cell.bindData(self.filteredEv[indexPath.row])
+        
+        return cell
+    }
+    
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -46,6 +107,8 @@ class OtherProfileViewController: UIViewController  {
     func fetchData() {
         
         print(email)
+
+
         
         let dataQuery = BackendlessDataQuery();
         // query to load user object which has objectId as the currently logged in user
@@ -58,19 +121,30 @@ class OtherProfileViewController: UIViewController  {
         //Fetch User details
         userObject = collection.getCurrentPage().first as! BackendlessUser;
         
+        //Fetch Event count
         name = userObject.getProperty("name").description
-        let follows = userObject.getProperty("FollowedB")
-        let events  = userObject.getProperty("events")
+        let caption = userObject.getProperty("caption").description
         let image = userObject.getProperty("image")
         
-        print(image.description)
+        let dq = BackendlessDataQuery();
+        dq.whereClause = "UEmail = '\(email)'"
+        var error: Fault?
+        let bc = backendless.data.of(test.ofClass()).find(dq, fault: &error)
+        if error == nil {
+            
+            let contacts = bc.getCurrentPage()
+            self.events.text = contacts.count.description
+            
+        }
+        else {
+            print("Server reported an error: \(error)")
+        }
+        
         self.userName.text = name
-        self.following.text = follows.count.description
-        self.events.text = events.count.description
-       
-            
-            let url = NSURL(string: image.description)
-            
+        self.caption.text = caption
+        
+        //Set Image
+        let url = NSURL(string: image.description)
         if url?.description != nil {
             let dataimage = NSData(contentsOfURL: url!)
             
@@ -84,80 +158,111 @@ class OtherProfileViewController: UIViewController  {
             self.image.image = UIImage(data: imgData!)
         }
         
-        print(events)
-        
-        //Check if User is already followed
-        if (follows.description.containsString(email) || events.description.containsString(backendless.userService.currentUser.email)){
-            print("True")
+        if userObject.email == backendless.userService.currentUser.email {
             follow.hidden = true
         }
-        else{
-        print("False")
-        }
         
-        //Fetch email of users(following)
-        let coll:BackendlessCollection = backendless.data.of(Emails.ofClass()).find(dataQuery)
-        Uemail = coll.getCurrentPage().first as! Emails;
-        //print(Uemail.email)
-               
     }
     
     @IBAction func Follow(sender: UIButton) {
-        
-//        let tEmail = Emails()
-//        tEmail.email = "sss@gmailscs.com"
-//        
-//        Types.tryblock({ () -> Void in
-//            
-//            let currentUser = self.backendless.userService.currentUser
-//            
-//            currentUser.setProperty("FollowedB", object:tEmail)
-//            
-//            
-//            self.backendless.userService.update(currentUser)
-//            
-//            self.follow.enabled=false
-//            self.follow.hidden = true
-//            print("User updated")
-//            
-//            },
-//                       
-//            catchblock: { (exception) -> Void in
-//            print("Server reported an error: \(exception)" )
-//        })
-//        let uGroup = UserGroups()
-//        uGroup.users.append(self.userObject)
-       
-        let dataStore = backendless.data.of(UserGroups.ofClass())
-        var error: Fault?
 
-        let result = dataStore.findFault(&error)
+        let dataQuery = BackendlessDataQuery()
         
+        dataQuery.whereClause = "email = '\(backendless.userService.currentUser.email)'"
+       
+        
+        var error: Fault?
+        let bc = backendless.data.of(UserGroups.ofClass()).find(dataQuery, fault: &error)
         if error == nil {
-            let contacts = result.getCurrentPage()
+           
+            let contacts = bc.getCurrentPage()
             
-        for theGroup in contacts as! [UserGroups] {
-            
-                    theGroup.users.append(userObject)
-                    
-                    var error: Fault?
-                    
-                    let result = backendless.data.update(theGroup, error: &error) as? UserGroups
-                    
-                    if error == nil {
-                        
-                        print("Member havs been added: \(result)")
-                    }
-                    
-                    else{
-                        print("Server reported an error: \(error)")
-                    }
+            for theGroup in contacts as! [UserGroups]{
+                theGroup.users.append(userObject)
+                
+                var error: Fault?
+                let result = backendless.data.update(theGroup, error: &error ) as? UserGroups
+                followersCount = (result?.users.count)!
+                
+                if error == nil {
+                    print("Member has been Added")
+                    //followedBy.text = followersCount.description
+                    followers()
+                    follow.hidden = true
+                }
+                
+                else{
+                    print("Server reported an error: \(error)")
+                }
             }
             
         }
+        else {
+            print("Server reported an error: \(error)")
+        }
+
+            }
+    
+    
+    func Following(){
         
-        else{
-            print("error: \(error)")
+        let dataQuery = BackendlessDataQuery()
+        
+        dataQuery.whereClause = "email = '\(email)'"
+        
+       // dataQuery.whereClause = "users.email = \'\(email)\'"
+        
+        var error: Fault?
+        let bc = backendless.data.of(UserGroups.ofClass()).find(dataQuery, fault: &error)
+        if error == nil {
+            
+            let result = bc.getCurrentPage()
+            if result.count == 0 {
+                following.text = "0"
+            }
+            else{
+            for theGroup in result as! [UserGroups]{
+                let followin = theGroup.users.count
+                following.text = followin.description
+            }
+            
+            }
+            
+        }
+        else {
+            print("Server reported an error: \(error)")
         }
     }
+    
+    func followers(){
+        let dataQuery = BackendlessDataQuery()
+        
+        //dataQuery.whereClause = "email = '\(backendless.userService.currentUser.email)'"
+        
+         dataQuery.whereClause = "users.email = \'\(email)\'"
+        
+        
+        var error: Fault?
+        let bc = backendless.data.of(UserGroups.ofClass()).find(dataQuery, fault: &error)
+        if error == nil {
+            
+            let result = bc.getCurrentPage()
+            if result.count == 0 {
+                following.text = "0"
+            }
+            else{
+                
+                followedBy.text = result.count.description
+
+                
+            }
+            
+        }
+        else {
+            print("Server reported an error: \(error)")
+        }
+    }
+    
+
+
 }

@@ -1,25 +1,24 @@
 //
-//  SearchCell.swift
+//  userCell.swift
 //  Party_hardy
 //
-//  Created by Venkata Srujan Chalasani on 4/26/16.
+//  Created by Venkata Srujan Chalasani on 4/29/16.
 //  Copyright © 2016 Venkata Srujan Chalasani. All rights reserved.
 //
 
 import Foundation
 
+class userCell:  UITableViewCell {
+    
 
-
-class SearchCell: UITableViewCell {
-   
-    @IBOutlet weak var EventImage: UIImageView!
     @IBOutlet weak var Eventtitle: UILabel!
     @IBOutlet weak var UName: UIButton!
     @IBOutlet weak var address: UIButton!
+    @IBOutlet weak var EventImage: UIImageView!
+
+    var imageUrl: NSURL!
     
-     var imageUrl: NSURL!
-    
-    func bindData(test1: test) {
+    func bindData(test1:test){
         
         self.Eventtitle.text = test1.Name! as String
         
@@ -57,8 +56,5 @@ class SearchCell: UITableViewCell {
             self.EventImage.image = UIImage(data: imgData!)
             
         }
-        
-        
     }
-
 }

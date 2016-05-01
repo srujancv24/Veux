@@ -9,50 +9,71 @@
 import Foundation
 
 
-class HomeViewController: UITableViewController {
+class HomeViewController: UITableViewController, ChildNameDelegate {
     
 
     var ev:[test]=[]
     var email:String?
+    let x: String? = nil
     
     var backendless = Backendless.sharedInstance()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.barTintColor = UIColor.cyanColor()
+//        let logo = UIImage(named: "veuxlogo.png")
+//        let imageView = UIImageView(image:logo)
+//        self.navigationItem.titleView = imageView
         self.fetchData()
+        
        
+    
     }
     @IBAction func UProfile(sender: UIButton) {
         
     }
-    
-    override func viewWillAppear(animated: Bool) {
-        
-    }
-       // viewDidLoad()
-    
-    
+  
     func fetchData(){
-
         
-        let dataStore = backendless.data.of(test.ofClass())
+        let dataQuery = BackendlessDataQuery()
+        let whereClause = "UEmail = '\(backendless.userService.currentUser.email!)'"
+        dataQuery.whereClause = whereClause
+        dataQuery.queryOptions.sortBy = ["UName DESC"]
+        
         var error: Fault?
-        
-        let result = dataStore.findFault(&error)
-        
+        let bc = backendless.data.of(test.ofClass()).find(dataQuery, fault: &error)
         if error == nil {
-            self.ev.appendContentsOf(result.data as! [test]!)
+            self.ev.removeAll()
+            self.ev.appendContentsOf(bc.data as! [test]!)
             
-//            let contacts = result.getCurrentPage()
-//            for obj in contacts as! [test]{
-//                //print("\(obj.Image)")
-//               
-//            }
         }
-            
         else {
             print("Server reported an error: \(error)")
         }
+        self.tableView.reloadData()
+
+        
+//        let dataStore = backendless.data.of(test.ofClass())
+//        var error: Fault?
+//        
+//        let result = dataStore.findFault(&error)
+//        
+//        if error == nil {
+//            self.ev.appendContentsOf(result.data as! [test]!)
+//            
+////            let contacts = result.getCurrentPage()
+////            for obj in contacts as! [test]{
+////                //print("\(obj.Image)")
+////               
+////            }
+//             self.tableView.reloadData()
+//        }
+//            
+//           
+//            
+//        else {
+//            print("Server reported an error: \(error)")
+//        }
 
     }
 
@@ -60,21 +81,22 @@ class HomeViewController: UITableViewController {
         return 1
     }
     
-   
-    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("EventCell", forIndexPath: indexPath)
         as! HomeCell
         
         cell.bindData(self.ev[indexPath.row])
-        print(ev[indexPath.row].UEmail)
+        
+        
+        cell.like.addTarget(self, action: #selector(HomeViewController.ButtonClicked(_:)), forControlEvents: .TouchUpInside)
+        
+        cell.disLike.addTarget(self, action: #selector(HomeViewController.ButtonClicked(_:)), forControlEvents: .TouchUpInside)
 
         return cell
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-       
         
         return ev.count
     }
@@ -82,7 +104,7 @@ class HomeViewController: UITableViewController {
     
     @IBAction func mapLoad(sender: AnyObject) {
         
-        let alert = UIAlertController(title: "Navigate Using", message:nil, preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: "Navigate Using", message:nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
         
         let googleMaps = UIAlertAction(title: "Google Maps", style: .Default) { (action) -> Void in
             
@@ -112,9 +134,9 @@ class HomeViewController: UITableViewController {
             }
         }
         
-        
         alert.addAction(googleMaps)
         alert.addAction(appleMaps)
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
         
         self.presentViewController(alert, animated: true, completion: nil)
     
@@ -131,14 +153,64 @@ class HomeViewController: UITableViewController {
             email = ev[indexPath!.row].UEmail
             
             let svc = segue.destinationViewController as! OtherProfileViewController;
-            
             svc.email = email
             
         }
-    }
- 
-    
-    
+        
+        if (segue.identifier == "Detail") {
+            
+            if let indexPath = tableView.indexPathForSelectedRow {
+            
+                let dvc = segue.destinationViewController as! DetailViewController;
+            
+                dvc.event = ev[indexPath.row]
+            }
+        }
+        
+        if (segue.identifier == "filter") {
+            let nav = segue.destinationViewController as! UINavigationController
+            let addEventViewController = nav.topViewController as! FilterViewController
+           
+            addEventViewController.delegate = self
+            
+            
+            
+        }
+
     }
 
+    func dataChanged(str: String) {
+        // Do whatever you need with the data
+        print(str)
+        
+    }
+    
+    func ButtonClicked(sender: AnyObject?) {
+        
+        let button = sender as! UIButton
+        let view = button.superview!
+        let cell = view.superview as! HomeCell
+        
+        let indexPath = tableView.indexPathForCell(cell)
 
+        
+        if sender === cell.like {
+            
+            
+            
+        }
+        
+        if sender === cell.disLike{
+            
+            print("true")
+        }
+
+        else if sender === cell.disLike {
+            
+            print("false")
+        }
+
+    }
+    
+    
+}

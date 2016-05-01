@@ -108,6 +108,19 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
             self.backendless.userService.update(currentUser)
 
             print("User updated")
+           
+            
+            //Create Success Alert
+            let alertView = UIAlertController(title: "Success", message: "Event has been Created", preferredStyle: .Alert)
+            
+            let Ok = UIAlertAction (title: "Ok", style: .Destructive ) { alertAction in
+                
+               // self.performSegueWithIdentifier("eventCreated", sender: self)
+                 self.navigationController?.popViewControllerAnimated(true)
+                //self.dismissViewControllerAnimated(true, completion: {})
+            }
+            alertView.addAction(Ok)
+            self.presentViewController(alertView, animated: true, completion: nil)
             
             },
                        
@@ -131,9 +144,7 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        
-        
-        
+                
         image.contentMode = .ScaleAspectFit
         image.image = chosenImage
         
