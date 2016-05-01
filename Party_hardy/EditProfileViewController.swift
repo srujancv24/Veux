@@ -19,15 +19,76 @@ class EditProfileViewController: UIViewController , UIImagePickerControllerDeleg
     var backendless = Backendless.sharedInstance()
     let picker = UIImagePickerController()
     var url:String?=nil
+    var email:String!
+    var objectId:String!
+    var userObject:BackendlessUser!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         picker.delegate = self
+        email = backendless.userService.currentUser.email
+        fetchData()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    func fetchData() {
+        
+        let dataQuery = BackendlessDataQuery();
+        // query to load user object which has objectId as the currently logged in user
+        
+        dataQuery.whereClause = "email = '\(email)'"
+        // find operation always returns a collection
+        
+        let collection:BackendlessCollection = backendless.data.of(BackendlessUser.ofClass()).find(dataQuery)
+        // take the first object from the collection, since there is always going to be just one
+        //Fetch User details
+        userObject = collection.getCurrentPage().first as! BackendlessUser;
+        
+        //Fetch Event count
+        
+        let image = userObject.getProperty("image")
+        
+        let dq = BackendlessDataQuery();
+        dq.whereClause = "UEmail = '\(email)'"
+        var error: Fault?
+        let bc = backendless.data.of(test.ofClass()).find(dq, fault: &error)
+        if error == nil {
+            userObject = collection.getCurrentPage().first as! BackendlessUser;
+            let contacts = bc.getCurrentPage()
+            
+        }
+        else {
+            print("Server reported an error: \(error)")
+        }
+        let x = backendless.userService.currentUser.getProperty("name")
+        let y = x.description
+        self.name.text = y
+        if backendless.userService.currentUser.getProperty("caption").description != nil {
+            self.caption.text = backendless.userService.currentUser.getProperty("caption").description
+        }
+        
+        
+        //Set Image
+        let url = NSURL(string: image.description)
+        if url?.description != nil {
+            let dataimage = NSData(contentsOfURL: url!)
+            
+            self.image.image = UIImage(data: dataimage!)
+        }
+            
+        else
+        {
+            let img = UIImage(named: "imageNotAvailable.jpg")
+            let imgData:NSData? = UIImageJPEGRepresentation(img!, 0.0)
+            self.image.image = UIImage(data: imgData!)
+        }
+        
+    }
+
+    
     @IBAction func changePassword(sender: AnyObject) {
         
         // Create the alertController

@@ -18,6 +18,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         
+        
         let APP_ID = "B0AF361C-8AA4-CD18-FF63-677A5ACB5200"
         let SECRET_KEY = "C5DB14C3-420E-500E-FFB2-0AABE09E8F00"
         let VERSION_NUM = "v1"

@@ -17,6 +17,7 @@ class OtherProfileViewController: UIViewController, UITableViewDelegate, UITable
     
 
   
+    @IBOutlet weak var caption: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var userName: UILabel!
@@ -122,6 +123,7 @@ class OtherProfileViewController: UIViewController, UITableViewDelegate, UITable
         
         //Fetch Event count
         name = userObject.getProperty("name").description
+        let caption = userObject.getProperty("caption").description
         let image = userObject.getProperty("image")
         
         let dq = BackendlessDataQuery();
@@ -139,7 +141,7 @@ class OtherProfileViewController: UIViewController, UITableViewDelegate, UITable
         }
         
         self.userName.text = name
-    
+        self.caption.text = caption
         
         //Set Image
         let url = NSURL(string: image.description)
