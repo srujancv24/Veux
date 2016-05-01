@@ -1262,24 +1262,24 @@
                                 <exclude reference="Mjg-hN-mkL"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="JlH-wZ-Hn6"/>
-                                <exclude reference="9cU-2b-RBd"/>
-                                <exclude reference="CP6-a6-y2F"/>
-                                <exclude reference="hm2-td-MLW"/>
-                                <exclude reference="nes-4O-E9O"/>
-                                <exclude reference="8xN-Vb-QgO"/>
+                                <exclude reference="GHJ-GP-tpV"/>
                                 <exclude reference="GdJ-Fj-ImZ"/>
                                 <exclude reference="RJY-de-sEj"/>
                                 <exclude reference="W0L-Yg-Y3D"/>
                                 <exclude reference="YIE-G4-X9E"/>
                                 <exclude reference="czg-j9-xbD"/>
+                                <exclude reference="JlH-wZ-Hn6"/>
+                                <exclude reference="8xN-Vb-QgO"/>
                                 <exclude reference="CC4-H5-SAl"/>
                                 <exclude reference="DHy-d9-utu"/>
                                 <exclude reference="QVD-K1-PsU"/>
+                                <exclude reference="9cU-2b-RBd"/>
+                                <exclude reference="CP6-a6-y2F"/>
+                                <exclude reference="hm2-td-MLW"/>
+                                <exclude reference="nes-4O-E9O"/>
                                 <exclude reference="6Gc-pO-I33"/>
                                 <exclude reference="Mpi-uw-jKe"/>
                                 <exclude reference="iKi-fa-Bhl"/>
-                                <exclude reference="GHJ-GP-tpV"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -1292,24 +1292,24 @@
                                 <include reference="Mjg-hN-mkL"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="JlH-wZ-Hn6"/>
-                                <include reference="9cU-2b-RBd"/>
-                                <include reference="CP6-a6-y2F"/>
-                                <include reference="hm2-td-MLW"/>
-                                <include reference="nes-4O-E9O"/>
-                                <include reference="8xN-Vb-QgO"/>
+                                <include reference="GHJ-GP-tpV"/>
                                 <include reference="GdJ-Fj-ImZ"/>
                                 <include reference="RJY-de-sEj"/>
                                 <include reference="W0L-Yg-Y3D"/>
                                 <include reference="YIE-G4-X9E"/>
                                 <include reference="czg-j9-xbD"/>
+                                <include reference="JlH-wZ-Hn6"/>
+                                <include reference="8xN-Vb-QgO"/>
                                 <include reference="CC4-H5-SAl"/>
                                 <include reference="DHy-d9-utu"/>
                                 <include reference="QVD-K1-PsU"/>
+                                <include reference="9cU-2b-RBd"/>
+                                <include reference="CP6-a6-y2F"/>
+                                <include reference="hm2-td-MLW"/>
+                                <include reference="nes-4O-E9O"/>
                                 <include reference="6Gc-pO-I33"/>
                                 <include reference="Mpi-uw-jKe"/>
                                 <include reference="iKi-fa-Bhl"/>
-                                <include reference="GHJ-GP-tpV"/>
                             </mask>
                         </variation>
                     </view>
