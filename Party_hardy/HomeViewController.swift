@@ -143,7 +143,6 @@ class HomeViewController: UITableViewController, ChildNameDelegate, CLLocationMa
                 UIApplication.sharedApplication().openURL(url!)
             }
             
-            
         }
         
         let appleMaps = UIAlertAction(title: "Apple Maps", style: .Default) { (action) -> Void in
@@ -197,10 +196,7 @@ class HomeViewController: UITableViewController, ChildNameDelegate, CLLocationMa
            
             addEventViewController.delegate = self
             
-            
-            
         }
-
     }
 
     func dataChanged(str: String) {
