@@ -7,15 +7,16 @@
 //
 
 import Foundation
+import CoreLocation
 
 
-class HomeViewController: UITableViewController, ChildNameDelegate {
+class HomeViewController: UITableViewController, ChildNameDelegate, CLLocationManagerDelegate {
     
 
     var ev:[test]=[]
     var email:String?
     let x: String? = nil
-    
+    var locationManager = CLLocationManager()
     var backendless = Backendless.sharedInstance()
     
     override func viewDidLoad() {
@@ -26,9 +27,26 @@ class HomeViewController: UITableViewController, ChildNameDelegate {
 //        self.navigationItem.titleView = imageView
         self.fetchData()
         
-       
-    
+        self.locationManager.requestAlwaysAuthorization()
+        
+        // For use in foreground
+        self.locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
+        
     }
+
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        print("locations = \(locValue.latitude) \(locValue.longitude)")
+    }
+    
+    
     @IBAction func UProfile(sender: UIButton) {
         
     }
@@ -103,12 +121,18 @@ class HomeViewController: UITableViewController, ChildNameDelegate {
     
     
     @IBAction func mapLoad(sender: AnyObject) {
+        let button = sender as! UIButton
+        let view = button.superview!
+        let cell = view.superview as! HomeCell
+        
+        let indexPath = tableView.indexPathForCell(cell)
+        let address = ev[indexPath!.row].Address! + "," + ev[indexPath!.row].City! + "," + ev[indexPath!.row].State!
         
         let alert = UIAlertController(title: "Navigate Using", message:nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
         
         let googleMaps = UIAlertAction(title: "Google Maps", style: .Default) { (action) -> Void in
             
-            let targetURL = NSURL(string: "comgooglemaps://?q=cupertino")!
+            let targetURL = NSURL(string: "comgooglemaps://?q='\(address)'")!
             
             let isAvailable = UIApplication.sharedApplication().canOpenURL(targetURL)
             if(isAvailable){
@@ -123,7 +147,7 @@ class HomeViewController: UITableViewController, ChildNameDelegate {
         }
         
         let appleMaps = UIAlertAction(title: "Apple Maps", style: .Default) { (action) -> Void in
-            let targetURL = NSURL(string: "http://maps.apple.com/?q=cupertino")!
+            let targetURL = NSURL(string: "http://maps.apple.com/?address='\(address)'")!
             let isAvailable = UIApplication.sharedApplication().canOpenURL(targetURL)
             if(isAvailable){
                 UIApplication.sharedApplication().openURL(targetURL)
@@ -193,10 +217,7 @@ class HomeViewController: UITableViewController, ChildNameDelegate {
         
         let indexPath = tableView.indexPathForCell(cell)
 
-        
         if sender === cell.like {
-            
-            
             
         }
         
