@@ -21,7 +21,7 @@ class HomeViewController: UITableViewController, ChildNameDelegate, CLLocationMa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.barTintColor = UIColor.cyanColor()
+        navigationController?.navigationBar.barTintColor = UIColor.init(red: 0.0, green: 0.2, blue: 0.3, alpha: 0.5)
 //        let logo = UIImage(named: "veuxlogo.png")
 //        let imageView = UIImageView(image:logo)
 //        self.navigationItem.titleView = imageView
