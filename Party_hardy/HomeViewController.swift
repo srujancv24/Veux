@@ -9,11 +9,12 @@
 import Foundation
 
 
-class HomeViewController: UITableViewController {
+class HomeViewController: UITableViewController, ChildNameDelegate {
     
 
     var ev:[test]=[]
     var email:String?
+    let x: String? = nil
     
     var backendless = Backendless.sharedInstance()
     
@@ -24,6 +25,7 @@ class HomeViewController: UITableViewController {
 //        let imageView = UIImageView(image:logo)
 //        self.navigationItem.titleView = imageView
         self.fetchData()
+        
        
     
     }
@@ -32,29 +34,46 @@ class HomeViewController: UITableViewController {
     }
   
     func fetchData(){
-
         
-        let dataStore = backendless.data.of(test.ofClass())
+        let dataQuery = BackendlessDataQuery()
+        let whereClause = "UEmail = '\(backendless.userService.currentUser.email!)'"
+        dataQuery.whereClause = whereClause
+        dataQuery.queryOptions.sortBy = ["UName DESC"]
+        
         var error: Fault?
-        
-        let result = dataStore.findFault(&error)
-        
+        let bc = backendless.data.of(test.ofClass()).find(dataQuery, fault: &error)
         if error == nil {
-            self.ev.appendContentsOf(result.data as! [test]!)
+            self.ev.removeAll()
+            self.ev.appendContentsOf(bc.data as! [test]!)
             
-//            let contacts = result.getCurrentPage()
-//            for obj in contacts as! [test]{
-//                //print("\(obj.Image)")
-//               
-//            }
-             self.tableView.reloadData()
         }
-            
-           
-            
         else {
             print("Server reported an error: \(error)")
         }
+        self.tableView.reloadData()
+
+        
+//        let dataStore = backendless.data.of(test.ofClass())
+//        var error: Fault?
+//        
+//        let result = dataStore.findFault(&error)
+//        
+//        if error == nil {
+//            self.ev.appendContentsOf(result.data as! [test]!)
+//            
+////            let contacts = result.getCurrentPage()
+////            for obj in contacts as! [test]{
+////                //print("\(obj.Image)")
+////               
+////            }
+//             self.tableView.reloadData()
+//        }
+//            
+//           
+//            
+//        else {
+//            print("Server reported an error: \(error)")
+//        }
 
     }
 
@@ -147,8 +166,24 @@ class HomeViewController: UITableViewController {
                 dvc.event = ev[indexPath.row]
             }
         }
+        
+        if (segue.identifier == "filter") {
+            let nav = segue.destinationViewController as! UINavigationController
+            let addEventViewController = nav.topViewController as! FilterViewController
+           
+            addEventViewController.delegate = self
+            
+            
+            
+        }
+
     }
-    
+
+    func dataChanged(str: String) {
+        // Do whatever you need with the data
+        print(str)
+        
+    }
     
     func ButtonClicked(sender: AnyObject?) {
         
@@ -160,13 +195,22 @@ class HomeViewController: UITableViewController {
 
         
         if sender === cell.like {
-           
+            
+            
+            
         }
         
+        if sender === cell.disLike{
+            
+            print("true")
+        }
+
         else if sender === cell.disLike {
-            // do something
-       
+            
+            print("false")
         }
 
     }
+    
+    
 }

@@ -126,7 +126,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     func sendEmail(email: String) {
         //Print the username that was sent to this func for testing purposes only
-        print(email);
+        print(email)
         
         //Use the backendless service that sends the email for our user
         Types.tryblock({ () -> Void in

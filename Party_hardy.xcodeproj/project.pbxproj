@@ -23,10 +23,12 @@
 		23423F871C7DD3BC00FA4EE8 /* Party_hardyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23423F861C7DD3BC00FA4EE8 /* Party_hardyTests.swift */; };
 		23423F921C7DD3BC00FA4EE8 /* Party_hardyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23423F911C7DD3BC00FA4EE8 /* Party_hardyUITests.swift */; };
 		23423FA11C7DD45600FA4EE8 /* Header.m in Sources */ = {isa = PBXBuildFile; fileRef = 23423FA01C7DD45600FA4EE8 /* Header.m */; };
+		234AA1451CD448C6005E751E /* userCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234AA1441CD448C6005E751E /* userCell.swift */; };
 		234AB1E31CBC2A3B00470F39 /* contacts-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 234AB1E01CBC2A3B00470F39 /* contacts-50.png */; };
 		234AB1E41CBC2A3B00470F39 /* search-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 234AB1E11CBC2A3B00470F39 /* search-50.png */; };
 		234AB1E51CBC2A3B00470F39 /* home-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 234AB1E21CBC2A3B00470F39 /* home-50.png */; };
 		234ACCC31CC02EE100F1B2BB /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234ACCC21CC02EE100F1B2BB /* Users.swift */; };
+		2355F9091CD5D27D009E6529 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2355F9081CD5D27D009E6529 /* FilterViewController.swift */; };
 		236AD3BE1CAE1A2A00FE7C9E /* veuxload.png in Resources */ = {isa = PBXBuildFile; fileRef = 236AD3BC1CAE1A2A00FE7C9E /* veuxload.png */; };
 		236AD3BF1CAE1A2A00FE7C9E /* veuxlogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 236AD3BD1CAE1A2A00FE7C9E /* veuxlogo.png */; };
 		236EA4791C7DD85400105F31 /* red-plastic-cup-clipart-Red-Solo-Cup copy.png in Resources */ = {isa = PBXBuildFile; fileRef = 236EA4771C7DD85400105F31 /* red-plastic-cup-clipart-Red-Solo-Cup copy.png */; };
@@ -86,10 +88,12 @@
 		23423F9F1C7DD45500FA4EE8 /* Party_hardy-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Party_hardy-Bridging-Header.h"; sourceTree = "<group>"; };
 		23423FA01C7DD45600FA4EE8 /* Header.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Header.m; sourceTree = "<group>"; };
 		23423FA21C7DD46000FA4EE8 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
+		234AA1441CD448C6005E751E /* userCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userCell.swift; sourceTree = "<group>"; };
 		234AB1E01CBC2A3B00470F39 /* contacts-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "contacts-50.png"; sourceTree = "<group>"; };
 		234AB1E11CBC2A3B00470F39 /* search-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search-50.png"; sourceTree = "<group>"; };
 		234AB1E21CBC2A3B00470F39 /* home-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-50.png"; sourceTree = "<group>"; };
 		234ACCC21CC02EE100F1B2BB /* Users.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
+		2355F9081CD5D27D009E6529 /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		236AD3BC1CAE1A2A00FE7C9E /* veuxload.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = veuxload.png; sourceTree = "<group>"; };
 		236AD3BD1CAE1A2A00FE7C9E /* veuxlogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = veuxlogo.png; sourceTree = "<group>"; };
 		236EA4771C7DD85400105F31 /* red-plastic-cup-clipart-Red-Solo-Cup copy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "red-plastic-cup-clipart-Red-Solo-Cup copy.png"; sourceTree = "<group>"; };
@@ -234,6 +238,7 @@
 		237708EE1CCB5BC900D93AE3 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				2355F9081CD5D27D009E6529 /* FilterViewController.swift */,
 				23423F731C7DD3BC00FA4EE8 /* ViewController.swift */,
 				236EA47B1C7DDCD500105F31 /* SignUpViewController.swift */,
 				23EA132F1CCA32CC00D882FB /* OtherProfileViewController.swift */,
@@ -242,9 +247,10 @@
 				23CF8F901C8ADC310083344F /* HomeViewController.swift */,
 				23CEFDCC1CD2C97900223FAD /* DetailViewController.swift */,
 				2342200A1CBEFF3C001BF5B8 /* SearchViewController.swift */,
+				23CF8F921C8ADC5C0083344F /* EventViewController.swift */,
+				234AA1441CD448C6005E751E /* userCell.swift */,
 				902F82E51C937C400010571C /* HomeCell.swift */,
 				238DB1111CD041AD00183F14 /* SearchCell.swift */,
-				23CF8F921C8ADC5C0083344F /* EventViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -467,12 +473,14 @@
 				23423F741C7DD3BC00FA4EE8 /* ViewController.swift in Sources */,
 				23423FA11C7DD45600FA4EE8 /* Header.m in Sources */,
 				234ACCC31CC02EE100F1B2BB /* Users.swift in Sources */,
+				234AA1451CD448C6005E751E /* userCell.swift in Sources */,
 				902F82E61C937C400010571C /* HomeCell.swift in Sources */,
 				23CF8F931C8ADC5C0083344F /* EventViewController.swift in Sources */,
 				23CEFDCD1CD2C97900223FAD /* DetailViewController.swift in Sources */,
 				233436541CCEB39200BA92D3 /* UserGroups.swift in Sources */,
 				2342200B1CBEFF3C001BF5B8 /* SearchViewController.swift in Sources */,
 				236EA47C1C7DDCD500105F31 /* SignUpViewController.swift in Sources */,
+				2355F9091CD5D27D009E6529 /* FilterViewController.swift in Sources */,
 				23423F721C7DD3BC00FA4EE8 /* AppDelegate.swift in Sources */,
 				23CF8F911C8ADC310083344F /* HomeViewController.swift in Sources */,
 				233FD0951CD1BD7600CCAD7F /* MyImageCache.swift in Sources */,

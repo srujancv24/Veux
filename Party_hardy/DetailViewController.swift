@@ -25,10 +25,11 @@ class DetailViewController: UIViewController {
         self.address.setTitle(event.Address, forState: .Normal)
         self.comments.text = event.Comments
         self.UEmail.setTitle(event.UEmail, forState: .Normal)
-        
+       
+         if event.Image != nil {
         let url = NSURL(string: event.Image!)
         
-        if url?.description != nil {
+       
             let dataimage = NSData(contentsOfURL: url!)
             
             self.ImageView.image = UIImage(data: dataimage!)
