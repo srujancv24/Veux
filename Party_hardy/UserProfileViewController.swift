@@ -163,7 +163,6 @@ class UserProfileViewController: UIViewController,UITableViewDelegate, UITableVi
             let imgData:NSData? = UIImageJPEGRepresentation(img!, 0.0)
             self.Image.image = UIImage(data: imgData!)
         }
-        
     }
     
     func Following(){

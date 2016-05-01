@@ -12,7 +12,6 @@ class EditProfileViewController: UIViewController , UIImagePickerControllerDeleg
     
     
     @IBOutlet weak var image: UIImageView!
-    
     @IBOutlet weak var address: UITextField!
     @IBOutlet weak var caption: UITextField!
     @IBOutlet weak var name: UITextField!
@@ -59,17 +58,16 @@ class EditProfileViewController: UIViewController , UIImagePickerControllerDeleg
             userObject = collection.getCurrentPage().first as! BackendlessUser;
             let contacts = bc.getCurrentPage()
             
-        }
+            }
         else {
             print("Server reported an error: \(error)")
-        }
+            }
         let x = backendless.userService.currentUser.getProperty("name")
         let y = x.description
         self.name.text = y
         if backendless.userService.currentUser.getProperty("caption").description != nil {
             self.caption.text = backendless.userService.currentUser.getProperty("caption").description
-        }
-        
+            }
         
         //Set Image
         let url = NSURL(string: image.description)
@@ -252,8 +250,8 @@ class EditProfileViewController: UIViewController , UIImagePickerControllerDeleg
             let name = backendless.userService.currentUser.email
             
             //Upload Profile Picture
-            
-            backendless.fileService.upload("profilepic/-\(name))", content: imgData, response: {(let uploadedFile: BackendlessFile!)->() in
+            let x = random()
+            backendless.fileService.upload("profilepic/-\(name)/-\(x))", content: imgData, response: {(let uploadedFile: BackendlessFile!)->() in
                 
                 print("File has been Uploaded -\(uploadedFile.fileURL)")
                 self.url = uploadedFile.fileURL
@@ -269,8 +267,6 @@ class EditProfileViewController: UIViewController , UIImagePickerControllerDeleg
                     
                     print("User updated")
                 self.navigationController?.popViewControllerAnimated(true)
-                
-                
                 
                 }, error: {(let fault: Fault!) ->() in
                     print("\(fault)")
@@ -292,12 +288,35 @@ class EditProfileViewController: UIViewController , UIImagePickerControllerDeleg
     
     @IBAction func chooseImage(sender: UIButton) {
         
-        picker.allowsEditing = false
-        picker.sourceType = .PhotoLibrary
+        let alert = UIAlertController(title: "Select Using", message:nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
         
-        presentViewController(picker, animated: true, completion: nil)
-
+        let photoLibrary = UIAlertAction(title: "Photo Library", style: .Default) { (action) -> Void in
+            self.picker.allowsEditing = false
+            self.picker.sourceType = .PhotoLibrary
+            self.presentViewController(self.picker, animated: true, completion: nil)
+            
+        }
+        
+        if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)){
+            
+            let camera = UIAlertAction(title: "Camera", style: .Default) { (action) -> Void in
+                
+                self.picker.allowsEditing = false
+                self.picker.sourceType = .Camera
+                self.presentViewController(self.picker, animated: true, completion: nil)
+            }
+            alert.addAction(camera)
+            
+        }
+        else{
+            print("Camera Not Available")
+        }
+        alert.addAction(photoLibrary)
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
+        
+        self.presentViewController(alert, animated: true, completion: nil)
     }
+    
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         

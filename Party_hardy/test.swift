@@ -20,6 +20,7 @@ class test: NSObject {
     var Image: String?
     var UName: String?
     var UEmail: String?
+    var location: GeoPoint?
     
     
 }

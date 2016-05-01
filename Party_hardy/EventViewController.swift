@@ -16,6 +16,8 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
     var strDate:String? = nil
     var url:String?=nil
     var email:String?
+    var latitude: CLLocationDegrees?
+    var longitude: CLLocationDegrees?
     
     @IBOutlet weak var imageName: UITextField!
     
@@ -100,46 +102,91 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
         event.UEmail = UEmail
         
         
-        Types.tryblock({ () -> Void in
-            let currentUser = self.backendless.userService.currentUser
-           
-            currentUser.setProperty("events", object: event)
-            
-            self.backendless.userService.update(currentUser)
-
-            print("User updated")
-           
-            
-            //Create Success Alert
-            let alertView = UIAlertController(title: "Success", message: "Event has been Created", preferredStyle: .Alert)
-            
-            let Ok = UIAlertAction (title: "Ok", style: .Destructive ) { alertAction in
-                
-               // self.performSegueWithIdentifier("eventCreated", sender: self)
-                 self.navigationController?.popViewControllerAnimated(true)
-                //self.dismissViewControllerAnimated(true, completion: {})
+        let address = address + "," + city + "," + state + "," + zipcode
+        print(address)
+        let geocoder = CLGeocoder()
+        
+        geocoder.geocodeAddressString(address, completionHandler: {(placemarks, error) -> Void in
+            if((error) != nil){
+                print("Error", error)
             }
-            alertView.addAction(Ok)
-            self.presentViewController(alertView, animated: true, completion: nil)
-            
-            },
-                       
-                       catchblock: { (exception) -> Void in
+            if let placemark = placemarks?.first {
+                let coordinates:CLLocationCoordinate2D = placemark.location!.coordinate
+                 self.longitude = placemark.location!.coordinate.longitude
+                 self.latitude = placemark.location!.coordinate.latitude
+                print(self.latitude)
+                print(self.longitude)
+                
+                
+                event.location = GeoPoint.geoPoint(GEO_POINT(latitude: self.latitude!, longitude: self.longitude!), categories: ["events"], metadata: ["city": city]) as? GeoPoint
+                
+                Types.tryblock({ () -> Void in
+                    let currentUser = self.backendless.userService.currentUser
+                    
+                    currentUser.setProperty("events", object: event)
+                    
+                    self.backendless.userService.update(currentUser)
+                    
+                    print("User updated")
+                    
+                    
+                    //Create Success Alert
+                    let alertView = UIAlertController(title: "Success", message: "Event has been Created", preferredStyle: .Alert)
+                    
+                    let Ok = UIAlertAction (title: "Ok", style: .Destructive ) { alertAction in
+                        
+                        // self.performSegueWithIdentifier("eventCreated", sender: self)
+                        self.navigationController?.popViewControllerAnimated(true)
+                        //self.dismissViewControllerAnimated(true, completion: {})
+                    }
+                    alertView.addAction(Ok)
+                    self.presentViewController(alertView, animated: true, completion: nil)
+                    
+                    },
+                    
+                    catchblock: { (exception) -> Void in
                         print("Server reported an error: \(exception)" )
+                })
+                
+            }
         })
+        
         
     }
     
    
     @IBAction func selectImage(sender: AnyObject) {
         
-        picker.allowsEditing = false
-        picker.sourceType = .PhotoLibrary
+        let alert = UIAlertController(title: "Select Using", message:nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
         
-        presentViewController(picker, animated: true, completion: nil)
+        let photoLibrary = UIAlertAction(title: "Photo Library", style: .Default) { (action) -> Void in
+            self.picker.allowsEditing = false
+            self.picker.sourceType = .PhotoLibrary
+            self.presentViewController(self.picker, animated: true, completion: nil)
+        
+        }
+    
+        if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)){
+    
+        let camera = UIAlertAction(title: "Camera", style: .Default) { (action) -> Void in
+        
+        self.picker.allowsEditing = false
+        self.picker.sourceType = .Camera
+        self.presentViewController(self.picker, animated: true, completion: nil)
+            }
+            alert.addAction(camera)
+    
+        }
+        else{
+            print("Camera Not Available")
+            }
+        alert.addAction(photoLibrary)
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+        
     }
     
-   
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
