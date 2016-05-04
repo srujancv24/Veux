@@ -15,16 +15,15 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var value: UILabel!
     @IBOutlet weak var tableView: UITableView!
     var delegate: ChildNameDelegate?
-    let x = "srujan"
-    var date:String?
-    var rating: String?
+    
+    var sort = "date"
+    
     var filteredEv  = ["Bar","Club","Organization","Individual"]
     
-    func whereTheChangesAreMade(data: String, date:String, rating: String) {
+    func whereTheChangesAreMade(data: String) {
         if let del = delegate {
             del.dataChanged(data)
-            del.dataChanged(date)
-            del.dataChanged(rating)
+         
         }
     }
     @IBAction func sliderChanged(sender: UISlider) {
@@ -37,7 +36,7 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBAction func save(sender: AnyObject) {
         
         //mDelegate?.sendArrayToPreviousVC(sd)
-       whereTheChangesAreMade(x, date: date!, rating: rating!)
+       whereTheChangesAreMade(sort)
         self.dismissViewControllerAnimated(true, completion: {})
         
     }
@@ -85,9 +84,9 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         switch segmented.selectedSegmentIndex {
         case 0:
-            rating = "rating"
+            sort = "rating"
         case 1:
-            date = "date"
+            sort = "date"
         default:
             break
         }

@@ -40,6 +40,7 @@
 		238DB1121CD041AD00183F14 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238DB1111CD041AD00183F14 /* SearchCell.swift */; };
 		23A4D9C31CD5FE4A0036D0CF /* profileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A4D9C21CD5FE4A0036D0CF /* profileCell.swift */; };
 		23A4D9C51CD666260036D0CF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23A4D9C41CD666260036D0CF /* CoreLocation.framework */; };
+		23A807BC1CD9A89200B304A1 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A807BB1CD9A89200B304A1 /* LoadingViewController.swift */; };
 		23CEFDCD1CD2C97900223FAD /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CEFDCC1CD2C97900223FAD /* DetailViewController.swift */; };
 		23CF8F911C8ADC310083344F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CF8F901C8ADC310083344F /* HomeViewController.swift */; };
 		23CF8F931C8ADC5C0083344F /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CF8F921C8ADC5C0083344F /* EventViewController.swift */; };
@@ -107,6 +108,7 @@
 		238DB1111CD041AD00183F14 /* SearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		23A4D9C21CD5FE4A0036D0CF /* profileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = profileCell.swift; sourceTree = "<group>"; };
 		23A4D9C41CD666260036D0CF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		23A807BB1CD9A89200B304A1 /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		23CEFDCC1CD2C97900223FAD /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		23CF8F901C8ADC310083344F /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		23CF8F921C8ADC5C0083344F /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 				238C64351CB9B805001789A8 /* EditProfileViewController.swift */,
 				238C64331CB8EA58001789A8 /* UserProfileViewController.swift */,
 				23CF8F901C8ADC310083344F /* HomeViewController.swift */,
+				23A807BB1CD9A89200B304A1 /* LoadingViewController.swift */,
 				23CEFDCC1CD2C97900223FAD /* DetailViewController.swift */,
 				2342200A1CBEFF3C001BF5B8 /* SearchViewController.swift */,
 				23CF8F921C8ADC5C0083344F /* EventViewController.swift */,
@@ -488,6 +491,7 @@
 				233436541CCEB39200BA92D3 /* UserGroups.swift in Sources */,
 				2342200B1CBEFF3C001BF5B8 /* SearchViewController.swift in Sources */,
 				236EA47C1C7DDCD500105F31 /* SignUpViewController.swift in Sources */,
+				23A807BC1CD9A89200B304A1 /* LoadingViewController.swift in Sources */,
 				2355F9091CD5D27D009E6529 /* FilterViewController.swift in Sources */,
 				23423F721C7DD3BC00FA4EE8 /* AppDelegate.swift in Sources */,
 				23CF8F911C8ADC310083344F /* HomeViewController.swift in Sources */,

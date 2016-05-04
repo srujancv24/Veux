@@ -20,6 +20,11 @@ class HomeViewController: UITableViewController, ChildNameDelegate, CLLocationMa
     var backendless = Backendless.sharedInstance()
     var like = "false"
     var dislike = "false"
+    @IBOutlet weak var rating: UIProgressView!
+    var curr = 0
+    var max = 0
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -221,13 +226,20 @@ class HomeViewController: UITableViewController, ChildNameDelegate, CLLocationMa
         let indexPath = tableView.indexPathForCell(cell)
         
 
-        
+
         if sender === cell.like {
             if (like == "false") {
                 cell.like.setImage(UIImage(named: "green.png"), forState: UIControlState.Normal)
                 cell.disLike.setImage(UIImage(named: "thumbdwn.png"), forState: UIControlState.Normal)
                 like = "true"
                 dislike = "false"
+                if curr <= max {
+                    curr = curr + 1
+                    max = max + 1
+                    let ratio = Float(curr) / Float(max)
+                    cell.rating.progress = Float(ratio)
+                    
+                }
             }
             
             else {

@@ -16,6 +16,7 @@ class HomeCell : UITableViewCell, UIScrollViewDelegate {
     @IBOutlet weak var UName: UIButton!
     @IBOutlet weak var like: UIButton!
     
+    @IBOutlet weak var rating: UIProgressView!
     @IBOutlet weak var disLike: UIButton!
       var imageUrl: NSURL!
     override func setSelected(selected: Bool, animated: Bool) {
