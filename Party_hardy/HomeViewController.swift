@@ -113,6 +113,10 @@ class HomeViewController: UITableViewController, ChildNameDelegate, CLLocationMa
         
         cell.disLike.addTarget(self, action: #selector(HomeViewController.ButtonClicked(_:)), forControlEvents: .TouchUpInside)
         
+        if ev[indexPath.row].Image == nil {
+            cell.like.setImage(UIImage(named: "green.png"), forState: UIControlState.Normal)
+            like = "true"
+        }
         
         return cell
     }
