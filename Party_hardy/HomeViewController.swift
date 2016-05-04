@@ -18,6 +18,8 @@ class HomeViewController: UITableViewController, ChildNameDelegate, CLLocationMa
     let x: String? = nil
     var locationManager = CLLocationManager()
     var backendless = Backendless.sharedInstance()
+    var like = "false"
+    var dislike = "false"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,45 +55,45 @@ class HomeViewController: UITableViewController, ChildNameDelegate, CLLocationMa
   
     func fetchData(){
         
-        let dataQuery = BackendlessDataQuery()
-        let whereClause = "UEmail = '\(backendless.userService.currentUser.email!)'"
-        dataQuery.whereClause = whereClause
-        dataQuery.queryOptions.sortBy = ["UName DESC"]
-        
-        var error: Fault?
-        let bc = backendless.data.of(test.ofClass()).find(dataQuery, fault: &error)
-        if error == nil {
-            self.ev.removeAll()
-            self.ev.appendContentsOf(bc.data as! [test]!)
-            
-        }
-        else {
-            print("Server reported an error: \(error)")
-        }
-        self.tableView.reloadData()
-
-        
-//        let dataStore = backendless.data.of(test.ofClass())
+//        let dataQuery = BackendlessDataQuery()
+//        let whereClause = "UEmail = '\(backendless.userService.currentUser.email!)'"
+//        dataQuery.whereClause = whereClause
+//        dataQuery.queryOptions.sortBy = ["UName DESC"]
+//        
 //        var error: Fault?
-//        
-//        let result = dataStore.findFault(&error)
-//        
+//        let bc = backendless.data.of(test.ofClass()).find(dataQuery, fault: &error)
 //        if error == nil {
-//            self.ev.appendContentsOf(result.data as! [test]!)
+//            self.ev.removeAll()
+//            self.ev.appendContentsOf(bc.data as! [test]!)
 //            
-////            let contacts = result.getCurrentPage()
-////            for obj in contacts as! [test]{
-////                //print("\(obj.Image)")
-////               
-////            }
-//             self.tableView.reloadData()
 //        }
-//            
-//           
-//            
 //        else {
 //            print("Server reported an error: \(error)")
 //        }
+//        self.tableView.reloadData()
+
+        
+        let dataStore = backendless.data.of(test.ofClass())
+        var error: Fault?
+        
+        let result = dataStore.findFault(&error)
+        
+        if error == nil {
+            self.ev.appendContentsOf(result.data as! [test]!)
+            
+//            let contacts = result.getCurrentPage()
+//            for obj in contacts as! [test]{
+//                //print("\(obj.Image)")
+//               
+//            }
+             self.tableView.reloadData()
+        }
+            
+           
+            
+        else {
+            print("Server reported an error: \(error)")
+        }
 
     }
 
@@ -110,7 +112,8 @@ class HomeViewController: UITableViewController, ChildNameDelegate, CLLocationMa
         cell.like.addTarget(self, action: #selector(HomeViewController.ButtonClicked(_:)), forControlEvents: .TouchUpInside)
         
         cell.disLike.addTarget(self, action: #selector(HomeViewController.ButtonClicked(_:)), forControlEvents: .TouchUpInside)
-
+        
+        
         return cell
     }
     
@@ -212,22 +215,43 @@ class HomeViewController: UITableViewController, ChildNameDelegate, CLLocationMa
         let cell = view.superview as! HomeCell
         
         let indexPath = tableView.indexPathForCell(cell)
+        
 
+        
         if sender === cell.like {
+            if (like == "false") {
+                cell.like.setImage(UIImage(named: "green.png"), forState: UIControlState.Normal)
+                cell.disLike.setImage(UIImage(named: "thumbdwn.png"), forState: UIControlState.Normal)
+                like = "true"
+                dislike = "false"
+            }
             
+            else {
+                cell.like.setImage(UIImage(named: "thumbup.png"), forState: UIControlState.Normal)
+                cell.disLike.setImage(UIImage(named: "thumbdwn.png"), forState: UIControlState.Normal)
+                like = "false"
+                dislike = "false"
+            }
+
         }
         
         if sender === cell.disLike{
+            if (dislike == "false") {
+                cell.like.setImage(UIImage(named: "thumbup.png"), forState: UIControlState.Normal)
+                cell.disLike.setImage(UIImage(named: "red.png"), forState: UIControlState.Normal)
+                like = "false"
+                dislike = "true"
+            }
+                
             
-            print("true")
+            else {
+                cell.like.setImage(UIImage(named: "thumbup.png"), forState: UIControlState.Normal)
+                cell.disLike.setImage(UIImage(named: "thumbdwn.png"), forState: UIControlState.Normal)
+                like = "false"
+                dislike = "false"
+            }
+           
+            }
         }
-
-        else if sender === cell.disLike {
-            
-            print("false")
-        }
-
-    }
-    
     
 }
