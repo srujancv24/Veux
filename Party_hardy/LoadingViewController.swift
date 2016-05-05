@@ -11,6 +11,7 @@ import Foundation
 class LoadingViewController: UIViewController {
     
     var backendless = Backendless.sharedInstance()
+    var res:Bool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +21,9 @@ class LoadingViewController: UIViewController {
         let VERSION_NUM = "v1"
         
         backendless.initApp(APP_ID, secret:SECRET_KEY, version:VERSION_NUM)
+        
+        validUserToken()
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -27,7 +31,12 @@ class LoadingViewController: UIViewController {
     }
 
     @IBAction func login(sender: AnyObject) {
-        validUserToken()
+        if res == true {
+            self.SegueForLoggedInUser()
+        }
+        else{
+        self.performSegueWithIdentifier("LoginScreen", sender: self)
+        }
         
     }
     
@@ -35,15 +44,16 @@ class LoadingViewController: UIViewController {
         backendless.userService.isValidUserToken(
             { ( result : AnyObject!) -> () in
                 
-                if(result.boolValue == true){
+                
                 print("isValidUserToken (ASYNC): \(result.boolValue)")
                 
                 self.backendless.userService.setStayLoggedIn( true )
-                self .SegueForLoggedInUser()
-                }
-                else{
-                    self.performSegueWithIdentifier("LoginScreen", sender: self)
-                }
+                //self .SegueForLoggedInUser()
+                self.res = result.boolValue
+                
+//                else{
+//                    self.performSegueWithIdentifier("LoginScreen", sender: self)
+//                }
             },
             error: { ( fault : Fault!) -> () in
                 print("Server reported an error (ASYNC): \(fault)")

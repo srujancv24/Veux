@@ -224,6 +224,34 @@ class UserProfileViewController: UIViewController,UITableViewDelegate, UITableVi
         }
     }
     
+//    @IBAction func logOut(sender: AnyObject) {
+//        let alert = UIAlertController(title: "Alert", message:nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+//        
+//        let logout = UIAlertAction(title: "Logout", style: .Default) { (action) -> Void in
+//            
+//            self.backendless.userService.logout(
+//                { ( user : AnyObject!) -> () in
+//                    print("User logged out.")
+//                    self.performSegueWithIdentifier("logOut", sender: self)
+//                    //self.dismissViewControllerAnimated(true, completion: {})
+//                    
+//                },
+//                error: { ( fault : Fault!) -> () in
+//                    print("Server reported an error: \(fault)")
+//            })
+//            
+//        }
+//        
+//        
+//        alert.addAction(logout)
+//        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
+//        
+//        self.presentViewController(alert, animated: true, completion: nil)
+//    }
     
+    @IBAction func logOut(sender: UIBarButtonItem) {
+        
+        print("logout")
+    }
 
 }
