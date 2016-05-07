@@ -31,7 +31,7 @@ class HomeCell : UITableViewCell, UIScrollViewDelegate {
         
         self.UName.setTitle(test1.UName! as String, forState: .Normal)
         
-        let address = test1.Address! + test1.City!
+        let address = test1.Address! + "," + test1.City! + "," +  test1.State! + "," + test1.Zipcode!
         
         self.EventHost.setTitle(address as String, forState: .Normal)
         

@@ -14,6 +14,7 @@ class HomeViewController: UITableViewController, ChildNameDelegate, CLLocationMa
     
 
     var ev:[test]=[]
+    var rat:[Rating] = []
     var email:String?
     let x: String? = nil
     var locationManager = CLLocationManager()
@@ -25,10 +26,11 @@ class HomeViewController: UITableViewController, ChildNameDelegate, CLLocationMa
     var dislike = "false"
     @IBOutlet weak var rating: UIProgressView!
     var curr = 0
-    var max = 0
+    var max = 2
     var sort = "nil"
     var dist = 20
     var filter = "nil"
+    
     
     
     
@@ -55,6 +57,7 @@ class HomeViewController: UITableViewController, ChildNameDelegate, CLLocationMa
         lat = (locationManager.location?.coordinate.latitude)!
         long = (locationManager.location?.coordinate.longitude)!
          searchingDataObjectByDistance()
+        fetchRating()
         
     }
 
@@ -130,14 +133,14 @@ class HomeViewController: UITableViewController, ChildNameDelegate, CLLocationMa
         Types.tryblock({ () -> Void in
             let dataQuery = BackendlessDataQuery()
             
-            
+            self.ev.removeAll()
             if(self.sort == "nil" && self.dist == 20 && self.filter == "nil")
             {
                 let queryOptions = QueryOptions()
                 queryOptions.relationsDepth = 1;
             
                 dataQuery.queryOptions = queryOptions;
-                dataQuery.whereClause = "distance( \(self.lat), \(self.long), location.latitude, location.longitude ) < mi(\(self.dist))"
+                dataQuery.whereClause = "distance( \(self.lat), \(self.long), location.latitude, location.longitude ) < mi(1000)"
             }
             else{
                 let queryOptions = QueryOptions()
@@ -151,12 +154,37 @@ class HomeViewController: UITableViewController, ChildNameDelegate, CLLocationMa
                 dataQuery:dataQuery) as BackendlessCollection
             for event in events.data as! [test] {
                 self.ev.appendContentsOf(events.data as! [test])
-                print(event.UName)
+                
             }
             },
                        catchblock: { (exception) -> Void in
                         print("searchingDataObjectByDistance (FAULT): \(exception as! Fault)")
         })
+    }
+    
+    func fetchRating(){
+        
+        let dataQuery = BackendlessDataQuery()
+        let whereClause = "user = '\(backendless.userService.currentUser.email!)'"
+        dataQuery.whereClause = whereClause
+    
+                var error: Fault?
+                let bc = backendless.data.of(Rating.ofClass()).find(dataQuery, fault: &error)
+                if error == nil {
+                    self.rat.removeAll()
+                    self.rat.appendContentsOf(bc.data as! [Rating]!)
+                    let xc = bc.getCurrentPage()
+                    for obj in xc as! [Rating]{
+                        print(obj.Likes)
+                    }
+                    
+        
+                }
+                else {
+                    print("Server reported an error: \(error)")
+                }
+                self.tableView.reloadData()
+
     }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -176,11 +204,12 @@ class HomeViewController: UITableViewController, ChildNameDelegate, CLLocationMa
         
         cell.disLike.addTarget(self, action: #selector(HomeViewController.ButtonClicked(_:)), forControlEvents: .TouchUpInside)
         
-        if ev[indexPath.row].Image == nil {
-            cell.like.setImage(UIImage(named: "green.png"), forState: UIControlState.Normal)
-            like = "true"
-        }
-        
+//        if ev[indexPath.row].Image == nil {
+//            cell.like.setImage(UIImage(named: "green.png"), forState: UIControlState.Normal)
+//            like = "true"
+//        }
+
+
         return cell
     }
     
@@ -274,13 +303,11 @@ class HomeViewController: UITableViewController, ChildNameDelegate, CLLocationMa
 
    func dataChanged(str: String, str2: String, str3: Int) {
         // Do whatever you need with the data
-        print(str)
-        print(str2)
-        print(str3)
         sort = str
         dist = str3
         filter = str2
-        viewDidLoad()
+        self.viewDidLoad()
+        tableView.reloadData()
         
         }
     
@@ -292,7 +319,12 @@ class HomeViewController: UITableViewController, ChildNameDelegate, CLLocationMa
         
         let indexPath = tableView.indexPathForCell(cell)
         
-
+        let rat = Rating()
+         let id = self.ev[(indexPath?.row)!].objectId
+        
+        let us = backendless.userService.currentUser.email
+        
+         let dataStore = backendless.data.of(Rating.ofClass())
 
         if sender === cell.like {
             if (like == "false") {
@@ -300,6 +332,19 @@ class HomeViewController: UITableViewController, ChildNameDelegate, CLLocationMa
                 cell.disLike.setImage(UIImage(named: "thumbdwn.png"), forState: UIControlState.Normal)
                 like = "true"
                 dislike = "false"
+                rat.Likes = id
+                rat.user = us
+                
+                dataStore.save(
+                    rat,
+                    response: { (result: AnyObject!) -> Void in
+                        let obj = result as! Rating
+                        print("Like has been saved: \(obj.objectId)")
+                    },
+                    error: { (fault: Fault!) -> Void in
+                        print("Server reported an error: \(fault)")
+                })
+                
                 if curr <= max {
                     curr = curr + 1
                     max = max + 1
