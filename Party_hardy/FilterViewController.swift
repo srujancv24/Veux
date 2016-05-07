@@ -16,30 +16,39 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var tableView: UITableView!
     var delegate: ChildNameDelegate?
     
-    var sort = "date"
+    var sort = "nil"
+    var filter = "nil"
+    var dist = 20
     
     var filteredEv  = ["Bar","Club","Organization","Individual"]
     
-    func whereTheChangesAreMade(data: String) {
+    func whereTheChangesAreMade(data: String, data1: String, data2:Int) {
         if let del = delegate {
-            del.dataChanged(data)
-         
+            del.dataChanged(data, str2: data1, str3: data2)
+            
         }
     }
     @IBAction func sliderChanged(sender: UISlider) {
         
         let currentValue = Int(sender.value)
+        dist = currentValue
         
-        value.text = "\(currentValue)"
+        value.text = "\(currentValue) Miles"
     }
     
     @IBAction func save(sender: AnyObject) {
         
         //mDelegate?.sendArrayToPreviousVC(sd)
-       whereTheChangesAreMade(sort)
+       whereTheChangesAreMade(sort, data1: filter, data2: dist)
         self.dismissViewControllerAnimated(true, completion: {})
         
     }
+    
+    @IBAction func cancel(sender: AnyObject) {
+        
+        self.dismissViewControllerAnimated(true, completion: {})
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,17 +85,26 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         // cell.textLabel.text = self.groupList[indexPath.row]
        cell.textLabel?.text = filteredEv[indexPath.row]
-        
+    
         return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.Checkmark
+        print(filteredEv[indexPath.row])
+    }
+    
+    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.None
     }
 
     @IBAction func sortChanged(sender: AnyObject) {
         
         switch segmented.selectedSegmentIndex {
         case 0:
-            sort = "rating"
+            sort = "nil"
         case 1:
-            sort = "date"
+            sort = "nil"
         default:
             break
         }
@@ -94,5 +112,6 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
 }
 
 protocol ChildNameDelegate {
-    func dataChanged(str: String)
+    func dataChanged(str: String, str2: String, str3: Int)
+    
 }

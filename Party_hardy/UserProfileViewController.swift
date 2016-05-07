@@ -54,14 +54,15 @@ class UserProfileViewController: UIViewController,UITableViewDelegate, UITableVi
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         super.viewDidLoad()
         
-        fetchData()
-        followers()
-        Following()
-        fetchTableData()
+        //fetchData()
+        //followers()
+        //Following()
+        //fetchTableData()
         //logOut(logOut)
         let homeButton : UIBarButtonItem = UIBarButtonItem(title: "Logout", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(UserProfileViewController.logOut))
         
         self.navigationItem.leftBarButtonItem = homeButton
+        
         
     }
     
@@ -198,6 +199,8 @@ class UserProfileViewController: UIViewController,UITableViewDelegate, UITableVi
             print("Server reported an error: \(error)")
         }
     }
+    
+    
     
     func followers(){
         let dataQuery = BackendlessDataQuery()

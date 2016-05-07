@@ -64,5 +64,15 @@ class LoadingViewController: UIViewController {
         self.performSegueWithIdentifier("LoginSuccess", sender: self)
         
     }
+    
+    func retrieveDeviceRegistrationAsync(deviceId: String) {
+        backendless.messaging.getRegistrationAsync(deviceId,response: {(result:DeviceRegistration!)->() in
+            print("Device\(result)")
+            },
+            error:{(fault:Fault!)-> () in
+                print("error")}
+            )
+        
+    }
 
 }

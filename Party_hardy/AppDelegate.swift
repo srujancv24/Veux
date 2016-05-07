@@ -24,17 +24,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
        // print("AppDelegate -> application:openURL: \(url.scheme)")
         
         let backendless = Backendless.sharedInstance()
+        backendless.messaging.registerForRemoteNotifications()
         let user = backendless.userService.handleOpenURL(url)
         if user != nil {
            // print("AppDelegate -> application:openURL: user = \(user)")
             
             // do something, call some ViewController method, for example
+                        
         }
         
         return true
 
     }
     
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        backendless.messaging.registerDeviceToken(deviceToken)
+        print(deviceToken)
+    }
+    
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        // handle error
+        print("error")
+    }
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

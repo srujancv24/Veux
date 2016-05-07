@@ -28,6 +28,8 @@
 		234AB1E41CBC2A3B00470F39 /* search-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 234AB1E11CBC2A3B00470F39 /* search-50.png */; };
 		234AB1E51CBC2A3B00470F39 /* home-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 234AB1E21CBC2A3B00470F39 /* home-50.png */; };
 		234ACCC31CC02EE100F1B2BB /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234ACCC21CC02EE100F1B2BB /* Users.swift */; };
+		2351349D1CDDBBF900CAD55B /* Contacts-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 2351349B1CDDBBF900CAD55B /* Contacts-40.png */; };
+		2351349E1CDDBBF900CAD55B /* Home-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 2351349C1CDDBBF900CAD55B /* Home-40.png */; };
 		2355F9091CD5D27D009E6529 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2355F9081CD5D27D009E6529 /* FilterViewController.swift */; };
 		236AD3BE1CAE1A2A00FE7C9E /* veuxload.png in Resources */ = {isa = PBXBuildFile; fileRef = 236AD3BC1CAE1A2A00FE7C9E /* veuxload.png */; };
 		236AD3BF1CAE1A2A00FE7C9E /* veuxlogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 236AD3BD1CAE1A2A00FE7C9E /* veuxlogo.png */; };
@@ -96,6 +98,8 @@
 		234AB1E11CBC2A3B00470F39 /* search-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search-50.png"; sourceTree = "<group>"; };
 		234AB1E21CBC2A3B00470F39 /* home-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-50.png"; sourceTree = "<group>"; };
 		234ACCC21CC02EE100F1B2BB /* Users.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
+		2351349B1CDDBBF900CAD55B /* Contacts-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Contacts-40.png"; sourceTree = "<group>"; };
+		2351349C1CDDBBF900CAD55B /* Home-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Home-40.png"; sourceTree = "<group>"; };
 		2355F9081CD5D27D009E6529 /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		236AD3BC1CAE1A2A00FE7C9E /* veuxload.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = veuxload.png; sourceTree = "<group>"; };
 		236AD3BD1CAE1A2A00FE7C9E /* veuxlogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = veuxlogo.png; sourceTree = "<group>"; };
@@ -205,6 +209,8 @@
 		237708E91CCB45ED00D93AE3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				2351349B1CDDBBF900CAD55B /* Contacts-40.png */,
+				2351349C1CDDBBF900CAD55B /* Home-40.png */,
 				233FD0961CD1C11200CCAD7F /* green.png */,
 				233FD0971CD1C11200CCAD7F /* red.png */,
 				233FD0981CD1C11200CCAD7F /* thumbdwn.png */,
@@ -353,7 +359,7 @@
 				TargetAttributes = {
 					23423F6D1C7DD3BC00FA4EE8 = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = 226MJ55BBW;
+						DevelopmentTeam = GW745C2MCL;
 					};
 					23423F811C7DD3BC00FA4EE8 = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -392,6 +398,7 @@
 			files = (
 				234AB1E41CBC2A3B00470F39 /* search-50.png in Resources */,
 				23423F7C1C7DD3BC00FA4EE8 /* LaunchScreen.storyboard in Resources */,
+				2351349D1CDDBBF900CAD55B /* Contacts-40.png in Resources */,
 				236AD3BE1CAE1A2A00FE7C9E /* veuxload.png in Resources */,
 				234AB1E51CBC2A3B00470F39 /* home-50.png in Resources */,
 				233FD09B1CD1C11200CCAD7F /* red.png in Resources */,
@@ -402,6 +409,7 @@
 				236AD3BF1CAE1A2A00FE7C9E /* veuxlogo.png in Resources */,
 				233FD09C1CD1C11200CCAD7F /* thumbdwn.png in Resources */,
 				233FD09A1CD1C11200CCAD7F /* green.png in Resources */,
+				2351349E1CDDBBF900CAD55B /* Home-40.png in Resources */,
 				23423F771C7DD3BC00FA4EE8 /* Main.storyboard in Resources */,
 				236EA4791C7DD85400105F31 /* red-plastic-cup-clipart-Red-Solo-Cup copy.png in Resources */,
 				233FD09D1CD1C11200CCAD7F /* thumbup.png in Resources */,
@@ -645,7 +653,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Party_hardy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Venkata-Chalasani.Veux";
+				PRODUCT_BUNDLE_IDENTIFIER = "Venkata-Chalasani.Veux1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Party_hardy/Party_hardy-Bridging-Header.h";
@@ -663,7 +671,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Party_hardy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Venkata-Chalasani.Veux";
+				PRODUCT_BUNDLE_IDENTIFIER = "Venkata-Chalasani.Veux1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Party_hardy/Party_hardy-Bridging-Header.h";

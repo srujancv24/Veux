@@ -17,12 +17,18 @@ class HomeViewController: UITableViewController, ChildNameDelegate, CLLocationMa
     var email:String?
     let x: String? = nil
     var locationManager = CLLocationManager()
+    var locValue = CLLocationCoordinate2D()
+    var lat:CLLocationDegrees = 0.0
+    var long:CLLocationDegrees = 0.0
     var backendless = Backendless.sharedInstance()
     var like = "false"
     var dislike = "false"
     @IBOutlet weak var rating: UIProgressView!
     var curr = 0
     var max = 0
+    var sort = "nil"
+    var dist = 20
+    var filter = "nil"
     
     
     
@@ -32,7 +38,7 @@ class HomeViewController: UITableViewController, ChildNameDelegate, CLLocationMa
 //        let logo = UIImage(named: "veuxlogo.png")
 //        let imageView = UIImageView(image:logo)
 //        self.navigationItem.titleView = imageView
-        self.fetchData()
+       // self.fetchData()
         
         self.locationManager.requestAlwaysAuthorization()
         
@@ -43,63 +49,114 @@ class HomeViewController: UITableViewController, ChildNameDelegate, CLLocationMa
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
+            
         }
+        
+        lat = (locationManager.location?.coordinate.latitude)!
+        long = (locationManager.location?.coordinate.longitude)!
+         searchingDataObjectByDistance()
         
     }
 
     
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-        print("locations = \(locValue.latitude) \(locValue.longitude)")
-    }
+    func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation){
+        
+        
+    
+           }
+    
+//    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//        locValue = manager.location!.coordinate
+//        lat = (locationManager.location?.coordinate.latitude)!
+//        long = (locationManager.location?.coordinate.longitude)!
+//        print(locationManager.location?.coordinate.latitude)
+//        locationManager.stopUpdatingLocation()
+//        
+//        searchingDataObjectByDistance()
+//        
+//    }
     
     
     @IBAction func UProfile(sender: UIButton) {
         
     }
   
-    func fetchData(){
-        
-//        let dataQuery = BackendlessDataQuery()
-//        let whereClause = "UEmail = '\(backendless.userService.currentUser.email!)'"
-//        dataQuery.whereClause = whereClause
-//        dataQuery.queryOptions.sortBy = ["UName DESC"]
+//    func fetchData(){
 //        
+////        let dataQuery = BackendlessDataQuery()
+////        let whereClause = "UEmail = '\(backendless.userService.currentUser.email!)'"
+////        dataQuery.whereClause = whereClause
+////        dataQuery.queryOptions.sortBy = ["UName DESC"]
+////        
+////        var error: Fault?
+////        let bc = backendless.data.of(test.ofClass()).find(dataQuery, fault: &error)
+////        if error == nil {
+////            self.ev.removeAll()
+////            self.ev.appendContentsOf(bc.data as! [test]!)
+////            
+////        }
+////        else {
+////            print("Server reported an error: \(error)")
+////        }
+////        self.tableView.reloadData()
+//
+//        
+//        let dataStore = backendless.data.of(test.ofClass())
 //        var error: Fault?
-//        let bc = backendless.data.of(test.ofClass()).find(dataQuery, fault: &error)
+//        
+//        let result = dataStore.findFault(&error)
+//        
 //        if error == nil {
-//            self.ev.removeAll()
-//            self.ev.appendContentsOf(bc.data as! [test]!)
+//            self.ev.appendContentsOf(result.data as! [test]!)
 //            
+////            let contacts = result.getCurrentPage()
+////            for obj in contacts as! [test]{
+////                //print("\(obj.Image)")
+////               
+////            }
+//             self.tableView.reloadData()
 //        }
+//            
+//           
+//            
 //        else {
 //            print("Server reported an error: \(error)")
 //        }
-//        self.tableView.reloadData()
-
+//
+//    }
+    
+    func searchingDataObjectByDistance() {
         
-        let dataStore = backendless.data.of(test.ofClass())
-        var error: Fault?
-        
-        let result = dataStore.findFault(&error)
-        
-        if error == nil {
-            self.ev.appendContentsOf(result.data as! [test]!)
+        Types.tryblock({ () -> Void in
+            let dataQuery = BackendlessDataQuery()
             
-//            let contacts = result.getCurrentPage()
-//            for obj in contacts as! [test]{
-//                //print("\(obj.Image)")
-//               
-//            }
-             self.tableView.reloadData()
-        }
             
+            if(self.sort == "nil" && self.dist == 20 && self.filter == "nil")
+            {
+                let queryOptions = QueryOptions()
+                queryOptions.relationsDepth = 1;
+            
+                dataQuery.queryOptions = queryOptions;
+                dataQuery.whereClause = "distance( \(self.lat), \(self.long), location.latitude, location.longitude ) < mi(\(self.dist))"
+            }
+            else{
+                let queryOptions = QueryOptions()
+                queryOptions.relationsDepth = 1;
+                
+                dataQuery.queryOptions = queryOptions;
+                dataQuery.whereClause = "distance( \(self.lat), \(self.long), location.latitude, location.longitude ) < mi(\(self.dist))"
+            }
            
-            
-        else {
-            print("Server reported an error: \(error)")
-        }
-
+            let events = self.backendless.persistenceService.find(test.ofClass(),
+                dataQuery:dataQuery) as BackendlessCollection
+            for event in events.data as! [test] {
+                self.ev.appendContentsOf(events.data as! [test])
+                print(event.UName)
+            }
+            },
+                       catchblock: { (exception) -> Void in
+                        print("searchingDataObjectByDistance (FAULT): \(exception as! Fault)")
+        })
     }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -112,6 +169,7 @@ class HomeViewController: UITableViewController, ChildNameDelegate, CLLocationMa
         as! HomeCell
         
         cell.bindData(self.ev[indexPath.row])
+        
         
         
         cell.like.addTarget(self, action: #selector(HomeViewController.ButtonClicked(_:)), forControlEvents: .TouchUpInside)
@@ -130,6 +188,8 @@ class HomeViewController: UITableViewController, ChildNameDelegate, CLLocationMa
         
         return ev.count
     }
+    
+
     
     
     @IBAction func mapLoad(sender: AnyObject) {
@@ -180,6 +240,7 @@ class HomeViewController: UITableViewController, ChildNameDelegate, CLLocationMa
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if (segue.identifier == "Uprofile") {
             
+            
             let button = sender as! UIButton
             let view = button.superview!
             let cell = view.superview as! HomeCell
@@ -211,11 +272,17 @@ class HomeViewController: UITableViewController, ChildNameDelegate, CLLocationMa
         }
     }
 
-    func dataChanged(str: String) {
+   func dataChanged(str: String, str2: String, str3: Int) {
         // Do whatever you need with the data
         print(str)
+        print(str2)
+        print(str3)
+        sort = str
+        dist = str3
+        filter = str2
+        viewDidLoad()
         
-    }
+        }
     
     func ButtonClicked(sender: AnyObject?) {
         

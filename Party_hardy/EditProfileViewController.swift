@@ -129,15 +129,11 @@ class EditProfileViewController: UIViewController , UIImagePickerControllerDeleg
             
             self.updateUser(confirmPassword!, cP: newPassword!)
             
-            
-            
-        }))
-        
-        
-        
+                }
+            )
+        )
         //Finally Present the viewcontroller when the button is clicked
         presentViewController(alertController, animated: true, completion: nil)
-        
     }
     
     func updateUser(nP:String, cP: String )  {

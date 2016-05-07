@@ -19,13 +19,14 @@ class OtherProfileViewController: UIViewController, UITableViewDelegate, UITable
   
     @IBOutlet weak var caption: UILabel!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var Pimage: UIImageView!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var follow: UIButton!
+    @IBOutlet weak var pImage: UIImageView!
     @IBOutlet weak var followedBy: UILabel!
     @IBOutlet weak var following: UILabel!
     @IBOutlet weak var events: UILabel!
-    
+    var imageUrl: NSURL!
     var backendless = Backendless.sharedInstance()
     var email:String!
     var name:String!
@@ -143,20 +144,36 @@ class OtherProfileViewController: UIViewController, UITableViewDelegate, UITable
         self.userName.text = name
         self.caption.text = caption
         
-        //Set Image
-        let url = NSURL(string: image.description)
-        if url?.description != nil {
-            let dataimage = NSData(contentsOfURL: url!)
-            
-            self.image.image = UIImage(data: dataimage!)
-        }
-            
-        else
-        {
-            let img = UIImage(named: "imageNotAvailable.jpg")
-            let imgData:NSData? = UIImageJPEGRepresentation(img!, 0.0)
-            self.image.image = UIImage(data: imgData!)
-        }
+//        //Set Image
+//            if(image.description != nil){
+//            print(image.description)
+//            let url1 = NSURL(string: image.description)
+//            imageUrl = url1 // For recycled cells' late image loads.
+//            if let image = url1?.cachedImage {
+//                // Cached: set immediately.
+//                pImage.image = image
+//                pImage.alpha = 1
+//            } else {
+//                // Not cached, so load then fade it in.
+//                pImage.alpha = 0
+//                url1!.fetchImage { image in
+//                    // Check the cell hasn't recycled while loading.
+//                    if self.imageUrl == url1 {
+//                        self.pImage.image = image
+//                        UIView.animateWithDuration(0.3) {
+//                            self.pImage.alpha = 1
+//                        }
+//                    }
+//                }
+//            }
+//            
+//        }
+//        else
+//        {
+//            let img = UIImage(named: "imageNotAvailable.jpg")
+//            let imgData:NSData? = UIImageJPEGRepresentation(img!, 0.0)
+//            self.pImage.image = UIImage(data: imgData!)
+//        }
         
         if userObject.email == backendless.userService.currentUser.email {
             follow.hidden = true

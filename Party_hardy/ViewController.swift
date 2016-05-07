@@ -49,6 +49,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
             permissions: ["public_profile", "email", "user_friends"],
             response: {(result : NSNumber!) -> () in
                 print ("Result: \(result)")
+                //self.validUserToken()
+                self.backendless.userService.setStayLoggedIn( true )
                 self.performSegueWithIdentifier("Login", sender: self)
                 
             },
