@@ -938,8 +938,7 @@
                                         <exclude reference="XyA-W1-qLR"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="55" y="97" width="120" height="102"/>
+                                <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="Afe-Fu-cbl"/>
                                         <include reference="XyA-W1-qLR"/>
@@ -1052,8 +1051,7 @@
                                         <exclude reference="at6-i8-y02"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="145" y="240" width="178" height="30"/>
+                                <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="at6-i8-y02"/>
                                     </mask>
@@ -1065,9 +1063,6 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="26" y="244" width="98" height="22"/>
-                                </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vCE-iE-Sww">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -1702,7 +1697,8 @@
                                                     <exclude reference="xxj-Ev-a1n"/>
                                                 </mask>
                                             </variation>
-                                            <variation key="heightClass=regular-widthClass=compact">
+                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                <rect key="frame" x="8" y="0.0" width="77" height="19"/>
                                                 <mask key="constraints">
                                                     <include reference="xxj-Ev-a1n"/>
                                                 </mask>
