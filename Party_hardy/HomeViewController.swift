@@ -30,6 +30,7 @@ class HomeViewController: UITableViewController, ChildNameDelegate, CLLocationMa
     var sort = "nil"
     var dist = 20
     var filter = "nil"
+    var hdbc = [""]
     
     
     
@@ -52,11 +53,14 @@ class HomeViewController: UITableViewController, ChildNameDelegate, CLLocationMa
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
             
+            lat = (locationManager.location?.coordinate.latitude)!
+            long = (locationManager.location?.coordinate.longitude)!
+            
+           
+            
         }
         
-        lat = (locationManager.location?.coordinate.latitude)!
-        long = (locationManager.location?.coordinate.longitude)!
-         searchingDataObjectByDistance()
+        searchingDataObjectByDistance()
         fetchRating()
         
     }
@@ -64,8 +68,6 @@ class HomeViewController: UITableViewController, ChildNameDelegate, CLLocationMa
     
     func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation){
         
-        
-    
            }
     
 //    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -132,15 +134,16 @@ class HomeViewController: UITableViewController, ChildNameDelegate, CLLocationMa
         
         Types.tryblock({ () -> Void in
             let dataQuery = BackendlessDataQuery()
-            
+           
             self.ev.removeAll()
+            
             if(self.sort == "nil" && self.dist == 20 && self.filter == "nil")
             {
                 let queryOptions = QueryOptions()
                 queryOptions.relationsDepth = 1;
-            
+                
                 dataQuery.queryOptions = queryOptions;
-                dataQuery.whereClause = "distance( \(self.lat), \(self.long), location.latitude, location.longitude ) < mi(1000)"
+                dataQuery.whereClause = "distance( \(self.lat), \(self.long), location.latitude, location.longitude ) < mi(20)"
             }
             else{
                 let queryOptions = QueryOptions()
@@ -153,7 +156,17 @@ class HomeViewController: UITableViewController, ChildNameDelegate, CLLocationMa
             let events = self.backendless.persistenceService.find(test.ofClass(),
                 dataQuery:dataQuery) as BackendlessCollection
             for event in events.data as! [test] {
+                self.ev.removeAll()
                 self.ev.appendContentsOf(events.data as! [test])
+                
+                print(event.location?.latitude)
+                
+                let userLocation:CLLocation = CLLocation(latitude: self.lat, longitude:self.long)
+                let priceLocation:CLLocation = CLLocation(latitude:(event.location?.latitude.doubleValue)!, longitude: (event.location?.longitude.doubleValue)!)
+                
+                let meters:CLLocationDistance = userLocation.distanceFromLocation(priceLocation)
+                print(meters)
+
                 
             }
             },
@@ -175,6 +188,7 @@ class HomeViewController: UITableViewController, ChildNameDelegate, CLLocationMa
                     self.rat.appendContentsOf(bc.data as! [Rating]!)
                     let xc = bc.getCurrentPage()
                     for obj in xc as! [Rating]{
+                        hdbc.append(obj.Likes!)
                         print(obj.Likes)
                     }
                     
@@ -208,6 +222,12 @@ class HomeViewController: UITableViewController, ChildNameDelegate, CLLocationMa
 //            cell.like.setImage(UIImage(named: "green.png"), forState: UIControlState.Normal)
 //            like = "true"
 //        }
+        
+        if hdbc.contains(ev[indexPath.row].objectId!) {
+            cell.like.setImage(UIImage(named: "green.png"), forState: UIControlState.Normal)
+            like = "true"
+            print(true)
+        }
 
 
         return cell

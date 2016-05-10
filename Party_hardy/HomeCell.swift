@@ -11,7 +11,7 @@ import Foundation
 class HomeCell : UITableViewCell, UIScrollViewDelegate {
 
     @IBOutlet weak var EventImage: UIImageView!
-    @IBOutlet weak var EventName: UILabel!
+
     @IBOutlet weak var EventHost: UIButton!
     @IBOutlet weak var UName: UIButton!
     @IBOutlet weak var like: UIButton!
@@ -27,7 +27,7 @@ class HomeCell : UITableViewCell, UIScrollViewDelegate {
     
     func bindData(test1: test) {
         
-        self.EventName.text = test1.Name! as String
+        //self.EventName.text = test1.Name! as String
         
         self.UName.setTitle(test1.UName! as String, forState: .Normal)
         
