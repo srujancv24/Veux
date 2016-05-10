@@ -50,6 +50,7 @@
 		23EA13301CCA32CC00D882FB /* OtherProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EA132F1CCA32CC00D882FB /* OtherProfileViewController.swift */; };
 		6A04655F7AA30A3A7752998C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9281CC656C7A72A8CC55E7AD /* libPods.a */; };
 		902F82E61C937C400010571C /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902F82E51C937C400010571C /* HomeCell.swift */; };
+		90872ABA1CE29AC500F06FB2 /* Tubs up.psd in Resources */ = {isa = PBXBuildFile; fileRef = 90872AB91CE29AC500F06FB2 /* Tubs up.psd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +122,7 @@
 		23EA132F1CCA32CC00D882FB /* OtherProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherProfileViewController.swift; sourceTree = "<group>"; };
 		2C797BE13A90103DCDB5C3FE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		902F82E51C937C400010571C /* HomeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
+		90872AB91CE29AC500F06FB2 /* Tubs up.psd */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Tubs up.psd"; path = "../../Tubs up.psd"; sourceTree = "<group>"; };
 		9281CC656C7A72A8CC55E7AD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EED064A6CF430A5CD7EC24C3 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -211,6 +213,7 @@
 		237708E91CCB45ED00D93AE3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				90872AB91CE29AC500F06FB2 /* Tubs up.psd */,
 				2351349B1CDDBBF900CAD55B /* Contacts-40.png */,
 				2351349C1CDDBBF900CAD55B /* Home-40.png */,
 				233FD0961CD1C11200CCAD7F /* green.png */,
@@ -406,6 +409,7 @@
 				234AB1E51CBC2A3B00470F39 /* home-50.png in Resources */,
 				233FD09B1CD1C11200CCAD7F /* red.png in Resources */,
 				236EA47A1C7DD85400105F31 /* LoginWithFacebook copy.png in Resources */,
+				90872ABA1CE29AC500F06FB2 /* Tubs up.psd in Resources */,
 				234AB1E31CBC2A3B00470F39 /* contacts-50.png in Resources */,
 				23423F791C7DD3BC00FA4EE8 /* Assets.xcassets in Resources */,
 				237708E81CCB45CD00D93AE3 /* imageNotAvailable.jpg in Resources */,
